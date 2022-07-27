@@ -1,0 +1,144 @@
+#shell {
+    background-color: black;
+}
+
+
+/* add effect */
+
+
+/* lower ocupacity (fade text) */
+
+#fade {
+    opacity: 0.85;
+}
+
+
+/* rounded corner */
+
+#rounded-corner1 {
+    border-radius: 25px;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+}
+
+
+/* Blinking */
+
+.blink {
+    animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* end of blinking */
+
+
+/* alignment */
+
+#left {
+    text-align: left;
+}
+
+#right {
+    text-align: right;
+}
+
+
+/* end of alignment */
+
+
+/* size text */
+
+#big-font {
+    font-size: calc(50px + 0.2vw);
+}
+
+#small-font {
+    font-size: calc(30px + 0.2vw);
+}
+
+.big-icon {
+    font-size: calc(30px + 2vw);
+}
+
+
+/* end of size text */
+
+
+/* type writer */
+
+
+/* usage
+    <div class='typewriter'>
+        <h1>sample typewriting</h1>
+    </div> */
+
+.typewriter h1 {
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation: typing 3.5s steps(10, end), blink-caret .75s step-end infinite;
+}
+
+
+/* The Blinking effect */
+
+.blink-me {
+    animation: blinker 2.75s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* end of type writer */
+
+.icon-link {
+    padding-right: 1rem;
+}
+
+.icon-link:link {
+    color: #24282b;
+}
+
+.icon-link:hover {
+    color: #fe6e00;
+    cursor: pointer;
+}
+
+
+/* button class */
+
+.button {
+    background-color: #24282b;
+    border: none;
+    color: white;
+    padding: 15px 64px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 1vw;
+}
