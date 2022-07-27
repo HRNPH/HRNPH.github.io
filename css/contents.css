@@ -142,3 +142,10 @@
     font-size: 16px;
     margin: 1vw;
 }
+
+
+/* from now on is content swapper css*/
+
+.hidden {
+    display: none;
+}
