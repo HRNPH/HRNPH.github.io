@@ -82,6 +82,9 @@
         min-width: 80vw;
         margin: 1vw;
     }
+    .slide {
+        margin: 0 auto;
+    }
     .bio-list {
         font-size: calc(15px + 1.5vw);
     }
