@@ -1,54 +1,44 @@
-var container = document.querySelector(".content-wrapper");
+function page_swap() {
+    home = document.querySelector("#home-content");
+    article = document.querySelector("#article-content");
+    side_button = document.querySelector("#side-button");
+    // add hidden class if element is not hidden and remove if hidden
 
-container.addEventListener("touchstart", startTouch, false);
-container.addEventListener("touchmove", moveTouch, false);
-
-// Swipe Up / Down / Left / Right
-var initialX = null;
-var initialY = null;
-
-function startTouch(e) {
-    initialX = e.touches[0].clientX;
-    initialY = e.touches[0].clientY;
-};
-
-function moveTouch(e) {
-    if (initialX === null) {
-        return;
-    }
-
-    if (initialY === null) {
-        return;
-    }
-
-    var currentX = e.touches[0].clientX;
-    var currentY = e.touches[0].clientY;
-
-    var diffX = initialX - currentX;
-    var diffY = initialY - currentY;
-
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        // sliding horizontally
-        if (diffX > 0) {
-            // swiped left
-            console.log("swiped left");
-        } else {
-            // swiped right
-            console.log("swiped right");
+    if (home.classList.contains("hidden")) {
+        home.classList.remove("hidden");
+        article.classList.add("hidden");
+        let texts = "บทความ";
+        // change each <h1> element in side_button
+        side_button.innerHTML = "";
+        // for each text in texts
+        for (let i = 0; i < texts.length; i++) {
+            let text = texts[i];
+            side_button.innerHTML += `<h1>${text}</h1>`;
         }
+
     } else {
-        // sliding vertically
-        if (diffY > 0) {
-            // swiped up
-            console.log("swiped up");
-        } else {
-            // swiped down
-            console.log("swiped down");
+        article.classList.remove("hidden");
+        home.classList.add("hidden");
+
+        let texts = "หน้าหลัก";
+        // change each <h1> element in side_button
+        side_button.innerHTML = "";
+        // for each text in texts
+        let holder = null;
+        for (let i = 0; i < texts.length; i++) {
+            let text = texts[i];
+            if (texts[i + 1] === "้" || texts[i + 1] === "ั") {
+                text = text + texts[i + 1];
+                side_button.innerHTML += `<h1>${text}</h1>`;
+                holder = i + 1
+            } else if (i !== holder) {
+                side_button.innerHTML += `<h1>${text}</h1>`;
+            }
+
         }
     }
 
-    initialX = null;
-    initialY = null;
 
-    e.preventDefault();
-};
+
+
+}

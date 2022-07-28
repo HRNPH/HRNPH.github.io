@@ -1,0 +1,23 @@
+#side-button {
+    text-align: center;
+    min-width: 3vw;
+    background-color: #000000;
+    color: #FFFFFF;
+    transition: color 2s;
+    transition: background-color 2s;
+    transition: min-width 1s;
+}
+
+#side-button:hover {
+    min-width: 8vw;
+    background-color: #00000069;
+    color: #000000;
+    transition: color min-width background-color;
+    transition: 1s;
+}
+
+@media screen and (max-width: 980px) {
+    #side-button {
+        display: none;
+    }
+}
