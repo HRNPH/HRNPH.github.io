@@ -4,8 +4,8 @@
     background-color: #000000;
     color: #FFFFFF;
     transition: color 2s;
-    transition: background-color 2s;
-    transition: min-width 1s;
+    transition: background-color min-width;
+    transition: 1s;
 }
 
 #side-button:hover {
