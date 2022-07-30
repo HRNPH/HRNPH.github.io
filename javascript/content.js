@@ -36,7 +36,7 @@ function page_swap() {
             }
 
         }
-        add_contents('shit');
+        add_contents('#article-content');
     }
 }
 
@@ -66,7 +66,7 @@ const contruct_article = (header, detail, link, piclink, pubDate) => {
 // article-content
 function add_contents(here) {
     MediumFetch('hrnph').then(data => {
-        let article_at = document.querySelector("#article-content");
+        let article_at = document.querySelector(here);
         article_at.innerHTML = "";
         for (let i = 0; i < data.items.length; i++) {
             let item = data.items[i];
