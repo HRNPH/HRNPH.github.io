@@ -36,9 +36,51 @@ function page_swap() {
             }
 
         }
+        add_contents('shit');
     }
+}
 
+const MediumFetch = async(name) => {
+    const res = await fetch(
+        `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${name}`
+    );
+    return await res.json();
+};
 
+const contruct_article = (header, detail, link, piclink, pubDate) => {
+    const article = `
+    <div class="article-card" onclick="window.open('${link}')">
+        <div class="article-card__header">
+            <img src="${piclink}" class="alt="article-card__image" class="article-card__image" width="100%">
+        </div>
+        <div class="article-card__body">
+            <span class="tag">${pubDate}</span>
+            <h4>${header}</h4>
 
+        </div>
+    </div>
+    `
+    return article;
+};
+
+// article-content
+function add_contents(here) {
+    MediumFetch('hrnph').then(data => {
+        let article_at = document.querySelector("#article-content");
+        article_at.innerHTML = "";
+        for (let i = 0; i < data.items.length; i++) {
+            let item = data.items[i];
+            let title = item.title;
+            let link = item.link;
+            let pubDate = item.pubDate.split(' ')[0];
+            let description = item.description;
+            let piclink = item.thumbnail;
+            let article = contruct_article(title, description, link, piclink, pubDate);
+            let article_at = document.querySelector("#article-content");
+            article_at.innerHTML += article
+        }
+    }).catch(err => {
+        console.log(err);
+    })
 
 }
