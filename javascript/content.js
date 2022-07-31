@@ -15,6 +15,7 @@ function page_swap() {
             let text = texts[i];
             side_button.innerHTML += `<h1>${text}</h1>`;
         }
+        reContruct_Navbar('#nav-link-menu', new_navbar(false));
 
     } else {
         article.classList.remove("hidden");
@@ -36,7 +37,8 @@ function page_swap() {
             }
 
         }
-        add_contents('#article-content');
+        add_contents('#article-container', MediumFetch, 'hrnph', medium_contructor);
+        reContruct_Navbar('#nav-link-menu', new_navbar(true));
     }
 }
 
@@ -47,8 +49,15 @@ const MediumFetch = async(name) => {
     return await res.json();
 };
 
+const RepoFetch = async(name) => {
+    const res = await fetch(
+        `https://api.github.com/users/${name}/repos`
+    );
+    return await res.json();
+};
+
 const contruct_article = (header, detail, link, piclink, pubDate) => {
-    const article = `
+    let article = `
     <div class="article-card" onclick="window.open('${link}')">
         <div class="article-card__header">
             <img src="${piclink}" class="alt="article-card__image" class="article-card__image" width="100%">
@@ -56,31 +65,110 @@ const contruct_article = (header, detail, link, piclink, pubDate) => {
         <div class="article-card__body">
             <span class="tag">${pubDate}</span>
             <h4>${header}</h4>
-
-        </div>
-    </div>
     `
+    if (detail !== false && detail !== null) {
+        article += `<p>${detail}</p>`
+    }
+
+    article += `</div></div>`
     return article;
 };
 
-// article-content
-function add_contents(here) {
-    MediumFetch('hrnph').then(data => {
+const medium_contructor = (here, data) => {
+    for (let i = 0; i < data.items.length; i++) {
+        let item = data.items[i];
+        let title = item.title;
+        let link = item.link;
+        let pubDate = item.pubDate.split(' ')[0];
+        let description = item.description;
+        let piclink = item.thumbnail;
+        let article = contruct_article(title, false, link, piclink, pubDate);
+        let article_at = document.querySelector(here);
+        article_at.innerHTML += article;
+    }
+
+}
+
+const github_repo_contructor = (here, repos) => {
+    for (let i = 0; i < repos.length; i++) {
+        let repo = repos[i]
+        let piclink = 'https://kinsta.com/wp-content/uploads/2018/04/what-is-github-1-1.png';
+        let article = contruct_article(repo.name, repo.description, repo.html_url, piclink, repo.updated_at);
+
+        let article_at = document.querySelector(here);
+        article_at.innerHTML += article;
+    }
+}
+
+// article-container
+function add_contents(here, fecthing, who, constructor) {
+    fecthing(who).then(data => {
         let article_at = document.querySelector(here);
         article_at.innerHTML = "";
-        for (let i = 0; i < data.items.length; i++) {
-            let item = data.items[i];
-            let title = item.title;
-            let link = item.link;
-            let pubDate = item.pubDate.split(' ')[0];
-            let description = item.description;
-            let piclink = item.thumbnail;
-            let article = contruct_article(title, description, link, piclink, pubDate);
-            let article_at = document.querySelector("#article-content");
-            article_at.innerHTML += article
-        }
+        constructor(here, data);
+
     }).catch(err => {
         console.log(err);
     })
 
+};
+
+function contentSwap() {
+    if (document.querySelector("#article-link").classList.contains("active")) {
+        document.querySelector("#article-link").classList.remove("active");
+        document.querySelector("#repo-link").classList.add("active");
+
+        add_contents('#article-container', RepoFetch, 'hrnph', github_repo_contructor);
+
+
+    } else {
+        document.querySelector("#article-link").classList.add("active");
+        document.querySelector("#repo-link").classList.remove("active");
+
+        add_contents('#article-container', MediumFetch, 'hrnph', medium_contructor);
+
+    }
+
+}
+
+function reContruct_Navbar(where, content) {
+    const doc = document.querySelector(where);
+    doc.innerHTML = content;
+};
+
+const new_navbar = (is_new = true) => {
+    let data
+    if (is_new) {
+        data = `
+            <a class='article-link active' id='article-link' onclick="contentSwap()">
+                <h2>บทความ</h2>
+            </a>
+            <a class='article-link' id='repo-link' onclick="contentSwap()">
+                <h2>โปรเจ็ค</h2>
+            </a>
+        `
+    } else {
+        data = `
+            <a class='nav-link active' href="#main">
+                <h2>หน้าหลัก</h2>
+            </a>
+            <a class='nav-link' href="#profile">
+                <h2>โปรไฟล์</h2>
+            </a>
+            <a class='nav-link' href="#portfolio">
+                <h2>ผลงาน</h2>
+            </a>
+            <a class='nav-link' href="#award">
+                <h2>เกียรติบัตร</h2>
+            </a>
+            <a class='nav-link' href="#PROUD">
+                <h2>ความภาคภูมิใจ</h2>
+            </a>
+            <a class='nav-link' href="#education">
+                <h2>การศึกษา</h2>
+            </a>
+            `
+    }
+
+    return data;
 }

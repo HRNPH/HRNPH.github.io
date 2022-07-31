@@ -69,6 +69,19 @@
     text-transform: capitalize;
 }
 
+.article-link {
+    color: #ffffff60;
+}
+
+.article-link:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.article-link.active {
+    color: #ffffff;
+}
+
 @media screen and (max-width: 980px) {
     #side-button {
         display: none;
