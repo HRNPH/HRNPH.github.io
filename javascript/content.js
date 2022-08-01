@@ -71,10 +71,19 @@ const contruct_article = (header, detail, link, piclink, pubDate) => {
     }
 
     article += `</div></div>`
+
     return article;
 };
 
+const sleep = async(milliseconds) => {
+    await new Promise(resolve => {
+        return setTimeout(resolve, milliseconds)
+    });
+};
+
 const medium_contructor = (here, data) => {
+    let article_at = document.querySelector(here);
+    article_at.innerHTML = ''
     for (let i = 0; i < data.items.length; i++) {
         let item = data.items[i];
         let title = item.title;
@@ -83,19 +92,21 @@ const medium_contructor = (here, data) => {
         let description = item.description;
         let piclink = item.thumbnail;
         let article = contruct_article(title, false, link, piclink, pubDate);
-        let article_at = document.querySelector(here);
         article_at.innerHTML += article;
+
     }
 
 }
 
 const github_repo_contructor = (here, repos) => {
+    let article_at = document.querySelector(here);
+    article_at.innerHTML = '';
     for (let i = 0; i < repos.length; i++) {
         let repo = repos[i]
         let piclink = 'https://kinsta.com/wp-content/uploads/2018/04/what-is-github-1-1.png';
         let article = contruct_article(repo.name, repo.description, repo.html_url, piclink, repo.updated_at);
 
-        let article_at = document.querySelector(here);
+
         article_at.innerHTML += article;
     }
 }
