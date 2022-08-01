@@ -104,7 +104,7 @@ const github_repo_contructor = (here, repos) => {
     for (let i = 0; i < repos.length; i++) {
         let repo = repos[i]
         let piclink = 'https://kinsta.com/wp-content/uploads/2018/04/what-is-github-1-1.png';
-        let article = contruct_article(repo.name, repo.description, repo.html_url, piclink, repo.updated_at);
+        let article = contruct_article(repo.name, repo.description, repo.html_url, piclink, repo.updated_at.split('').slice(0, 10).join(''));
 
 
         article_at.innerHTML += article;
