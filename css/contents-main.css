@@ -47,8 +47,7 @@ img.mobile-avatar {
 .main-content-footer-icon-container {
     flex: 4;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
     color: #24282b;
 }
 

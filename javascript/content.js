@@ -17,6 +17,7 @@ function page_swap() {
         }
         reContruct_Navbar('#nav-link-menu', new_navbar(false));
 
+
     } else {
         article.classList.remove("hidden");
         home.classList.add("hidden");
@@ -165,18 +166,6 @@ const new_navbar = (is_new = true) => {
             </a>
             <a class='nav-link' href="#profile">
                 <h2>โปรไฟล์</h2>
-            </a>
-            <a class='nav-link' href="#portfolio">
-                <h2>ผลงาน</h2>
-            </a>
-            <a class='nav-link' href="#award">
-                <h2>เกียรติบัตร</h2>
-            </a>
-            <a class='nav-link' href="#PROUD">
-                <h2>ความภาคภูมิใจ</h2>
-            </a>
-            <a class='nav-link' href="#education">
-                <h2>การศึกษา</h2>
             </a>
             `
     }
