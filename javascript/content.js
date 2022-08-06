@@ -84,7 +84,6 @@ const sleep = async(milliseconds) => {
 
 const medium_contructor = (here, data) => {
     let article_at = document.querySelector(here);
-    article_at.innerHTML = ''
     for (let i = 0; i < data.items.length; i++) {
         let item = data.items[i];
         let title = item.title;
@@ -101,7 +100,6 @@ const medium_contructor = (here, data) => {
 
 const github_repo_contructor = (here, repos) => {
     let article_at = document.querySelector(here);
-    article_at.innerHTML = '';
     for (let i = 0; i < repos.length; i++) {
         let repo = repos[i]
         let piclink = 'https://kinsta.com/wp-content/uploads/2018/04/what-is-github-1-1.png';
@@ -116,7 +114,10 @@ const github_repo_contructor = (here, repos) => {
 function add_contents(here, fecthing, who, constructor) {
     fecthing(who).then(data => {
         let article_at = document.querySelector(here);
-        article_at.innerHTML = "";
+        article_at.innerHTML = `
+        <div class="button" id="phone-button" onclick="page_swap()">หน้าแรก</div>
+        <div class="button" id="phone-button" onclick="contentSwap()">บทความ/โปรเจค</div>
+        `;
         constructor(here, data);
 
     }).catch(err => {

@@ -82,7 +82,16 @@
     color: #ffffff;
 }
 
+#phone-button {
+    display: none;
+}
+
 @media screen and (max-width: 980px) {
+    #phone-button {
+        display: block;
+        min-width: 80vw;
+        font-size: 2rem;
+    }
     #side-button {
         display: none;
     }
