@@ -88,7 +88,7 @@
 
 @media screen and (max-width: 980px) {
     #phone-button {
-        display: block;
+        display: visible;
         min-width: 80vw;
         font-size: 2rem;
     }
