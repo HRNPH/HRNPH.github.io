@@ -130,7 +130,7 @@ a.nav-link:active {
     .layout {
         flex-direction: column;
         min-height: 100%;
-        margin-top: 20vh;
+        margin-top: 5vh;
     }
     .navbar {
         display: none;
