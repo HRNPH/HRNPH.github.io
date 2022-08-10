@@ -135,6 +135,7 @@ a.nav-link:active {
     }
     .content-wrapper {
         flex-direction: column;
+        margin: 0;
     }
     .content-box {
         max-width: 100vw;
