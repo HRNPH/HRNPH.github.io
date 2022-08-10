@@ -156,3 +156,10 @@
 .hidden {
     display: none;
 }
+
+@media screen and (max-width: 980px) {
+    .button {
+        margin: 0 auto;
+        min-width: 80vw;
+    }
+}

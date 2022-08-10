@@ -121,8 +121,8 @@ a.main-button {
     }
     a.icon-link {
         font-size: calc(10vw + 20px);
-        padding-right: 5vw;
-        padding-left: 5vw;
+        padding-right: 2.5vw;
+        padding-left: 2.5vw;
     }
     .main-content-footer-greeting {
         padding-bottom: 1.5vw;

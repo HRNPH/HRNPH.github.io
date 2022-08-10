@@ -96,6 +96,9 @@
         width: calc(100px + 1.5vw);
         height: calc(100px + 1.5vw);
     }
+    #profile {
+        text-align: center;
+    }
 }
 
 
