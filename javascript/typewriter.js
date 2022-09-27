@@ -7,8 +7,26 @@ async function typeWriter(messageToShow, targetElement, timeBetween, currentPos 
         return true;
     }
 }
+
+const header = document.getElementById('writename');
+const subheader = document.getElementById('writename-thai');
+
+var headwriter = new Typewriter(header, {
+    strings: ['Hirunkul Phimsiri', 'Learner', 'Developer', 'Data science', 'Business Enjoyer'],
+    autoStart: true,
+    loop: true,
+    delay: 200,
+});
+
+var subwriter = new Typewriter(subheader, {
+    loop: false
+});
+
+
+
 // call all onload function
 window.addEventListener('load', (event) => {
-    typeWriter('HIRUNKUL PHIMSIRI', 'writename', 100);
-    typeWriter('หิรัญกุล พิมพ์ศิริ', 'writename-thai', 200);
+    headwriter.pauseFor(3000).start()
+    subwriter.typeString('หิรัญกุล พิมพ์ศิริ').start()
+
 });
