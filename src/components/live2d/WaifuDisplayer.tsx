@@ -1,42 +1,54 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { Live2DModel, MotionPriority } from "pixi-live2d-display/cubism4";
-import * as PIXI from "pixi.js";
+import dynamic from "next/dynamic";
+import Script from "next/script";
+import { useEffect, useRef, useState } from "react";
+import { WaifuDisplayerProps } from "./interface";
 
-Live2DModel.registerTicker(PIXI.Ticker);
+const WaifuLoader = dynamic(() => import("@/components/live2d/WaifuLoader"), {
+  ssr: false,
+  loading: () => <div>Loading...</div>,
+});
 
-export default function WaifuDisplayer() {
-  // Create canvas ref
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+/**
+ * Display live2d model on the screen, with the ability to interact with it.
+ */
+export default function WaifuDisplayer(props: WaifuDisplayerProps) {
+  const { id, className, modelOptions } = props;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [resizeTarget, setResizeTarget] = useState<HTMLElement | null>(null);
+  const [Initialized, setInitialized] = useState(false);
+
   useEffect(() => {
-    const app = new PIXI.Application({
-      view: document.getElementById("canvas") as HTMLCanvasElement,
-      autoStart: true,
-      resizeTo: window,
-    });
+    if (containerRef.current) {
+      setResizeTarget(containerRef.current);
 
-    Live2DModel.from(
-      // "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json"
-      "/models/SakiUnit/02saki_unit.model3.json"
-    ).then((model) => {
-      app.stage.addChild(model);
-
-      model.anchor.set(0.5, 0.5);
-      model.position.set(window.innerWidth / 2, window.innerHeight / 2);
-      model.scale.set(0.25, 0.25);
-      //model.expression();
-      model.motion("w-adult-blushed01", 0, MotionPriority.FORCE);
-      model.motion("face_lookdown_01", 0, MotionPriority.IDLE);
-      model.on("hit", () => {
-        console.info("hit");
-        model.expression();
-      });
-    });
+      // Update resize target dynamically on window resize
+      const handleResize = () => {
+        setResizeTarget(containerRef.current);
+      };
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
+
+  const WaifuLoaded = () => {
+    console.log("WaifuLibs loaded");
+    setInitialized(true);
+  };
+
   return (
     <>
-      <div>
-        <canvas id="canvas" ref={canvasRef} />
+      <Script
+        src="sdk/live2dcubismcore.min.js" // Load Live2D Cubism SDK, Needed For WaifuLibs
+        strategy="afterInteractive" // load before anything else
+        onLoad={WaifuLoaded} // Initialize WaifuLibs after SDK is loaded
+      />
+      <div id={id} className={className} ref={containerRef}>
+        {Initialized && resizeTarget ? (
+          <WaifuLoader resizeTo={resizeTarget} modelOptions={modelOptions} />
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </>
   );
