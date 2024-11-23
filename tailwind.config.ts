@@ -11,8 +11,8 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				background: 'var(--background)',
-				foreground: 'var(--foreground)'
+				background: '#f5f5f5',
+				foreground: '#333333',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
