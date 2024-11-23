@@ -5,11 +5,7 @@ import * as PIXI from "pixi.js";
 
 Live2DModel.registerTicker(PIXI.Ticker);
 
-type Dict<T> = { [key: string]: T };
-export default function WaifuDisplayer(
-  model: string,
-  options?: Dict<string | number>
-) {
+export default function WaifuDisplayer() {
   // Create canvas ref
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -30,6 +26,7 @@ export default function WaifuDisplayer(
       model.scale.set(0.25, 0.25);
       //model.expression();
       model.motion("w-adult-blushed01", 0, MotionPriority.FORCE);
+      model.motion("face_lookdown_01", 0, MotionPriority.IDLE);
       model.on("hit", () => {
         console.info("hit");
         model.expression();
