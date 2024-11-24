@@ -58,6 +58,9 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
       model.anchor.set(anchorX, anchorY);
       model.position.set(clientWidth / 2, clientHeight / 2);
       model.scale.set(scaleX, scaleY);
+
+      // Todo Add Option To Access model
+
       //model.expression();
       model.motion("w-adult-blushed01", 0, MotionPriority.FORCE);
       model.motion("face_lookdown_01", 0, MotionPriority.IDLE);

@@ -1,4 +1,5 @@
 import { Color } from "@/types/colors";
+import { type Live2DModel, type InternalModel } from "pixi-live2d-display";
 
 // Shared Interfaces
 export interface modelOptions {
@@ -8,6 +9,7 @@ export interface modelOptions {
     background?: string;
     alpha?: number;
     bgColor?: Color;
+    OnLoad?: (model: Live2DModel<InternalModel>) => void;
 }
 
 // Waifuloaders Interfaces
