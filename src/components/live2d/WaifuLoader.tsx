@@ -68,7 +68,7 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
       });
 
       // Make Canvas Transparent
-      app.renderer.backgroundAlpha = modelOptions?.alpha ?? 1;
+      app.renderer.backgroundAlpha = modelOptions?.alpha ?? 0;
       app.renderer.backgroundColor = modelOptions?.bgColor
         ? colorToNumber(modelOptions?.bgColor)
         : 0x000000;
