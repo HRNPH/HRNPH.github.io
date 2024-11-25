@@ -78,6 +78,11 @@ export const Primary: Story = {
       },
       alpha: 0.5, // Transperancy
       bgColor: "#000000",
+      model: "/models/SakiUnit/02saki_unit.model3.json",
+      OnLoad: (model) => {
+        model.expression();
+        console.log("Model loaded:", model);
+      },
     } as modelOptions,
   },
   render: (args) => (

@@ -4,6 +4,7 @@ import { type Live2DModel, type InternalModel } from "pixi-live2d-display";
 // Shared Interfaces
 export interface modelOptions {
     name?: string;
+    model?: string;
     scale?: { x: number; y: number };
     position?: { x: number; y: number };
     background?: string;

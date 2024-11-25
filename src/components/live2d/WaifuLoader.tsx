@@ -50,16 +50,14 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
     });
 
     Live2DModel.from(
-      // "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json"
-      "/models/SakiUnit/02saki_unit.model3.json"
+      modelOptions?.model ??
+        "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json"
     ).then((model) => {
       app.stage.addChild(model);
 
       model.anchor.set(anchorX, anchorY);
       model.position.set(clientWidth / 2, clientHeight / 2);
       model.scale.set(scaleX, scaleY);
-
-      // Todo Add Option To Access model
 
       //model.expression();
       model.motion("w-adult-blushed01", 0, MotionPriority.FORCE);
@@ -74,12 +72,16 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
       app.renderer.backgroundColor = modelOptions?.bgColor
         ? colorToNumber(modelOptions?.bgColor)
         : 0x000000;
+
+      // Model Additional Initialization, Can override default settings
+      modelOptions?.OnLoad?.(model);
     });
   }, [
     anchorX,
     anchorY,
     clientHeight,
     clientWidth,
+    modelOptions,
     modelOptions?.alpha,
     modelOptions?.bgColor,
     resizeTo,
