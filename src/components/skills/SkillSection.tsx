@@ -1,20 +1,19 @@
-"use client";
-import { Parallax } from "react-scroll-parallax";
 import { Skill, SkillCard } from "./card/SkillsCard";
+import { ParallaxWrapper } from "../providers/ParalaxWrapper";
 
 interface SkillsSectionProps {
   skills: Skill[];
   className?: string;
 }
-export const SkillsSection = ({ skills, className }: SkillsSectionProps) => (
+const SkillsSection = ({ skills, className }: SkillsSectionProps) => (
   <section className={`py-20 relative overflow-hidden ${className}`}>
     <div className="container mx-auto px-6">
-      <Parallax speed={10}>
+      <ParallaxWrapper speed={10}>
         <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
           Skills & Expertise
         </h2>
-      </Parallax>
-      <Parallax speed={5}>
+      </ParallaxWrapper>
+      <ParallaxWrapper speed={5}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((skillSet, index) => (
             <SkillCard
@@ -24,7 +23,9 @@ export const SkillsSection = ({ skills, className }: SkillsSectionProps) => (
             />
           ))}
         </div>
-      </Parallax>
+      </ParallaxWrapper>
     </div>
   </section>
 );
+
+export default SkillsSection;

@@ -7,7 +7,9 @@ export type Skill = {
   items: string[];
 };
 
-interface SkillsSectionProps extends Skill {
+interface SkillsSectionProps {
+  category: string;
+  items: string[];
   className?: string;
 }
 
