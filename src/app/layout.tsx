@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import ParallaxBackground from "@/components/BgWrapper";
 
 const mitrSans = localFont({
   src: "./fonts/Mitr-Regular.ttf",
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${mitrSans.variable} font-mitrSans antialiased`}>
-        {children}
+        <ParallaxBackground>{children}</ParallaxBackground>
       </body>
     </html>
   );
