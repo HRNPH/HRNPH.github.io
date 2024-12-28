@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Script from "next/script";
 import HeroSection from "./HeroSection";
 
-const meta: Meta = {
+const meta: Meta<typeof HeroSection> = {
   title: "Landing/Hero",
   component: HeroSection,
   parameters: {},
@@ -14,6 +14,8 @@ const meta: Meta = {
           strategy="afterInteractive" // load before anything else
         />
         <Story />
+        {/* Self Closing BG Decorator */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900" />
       </div>
     ),
   ],
