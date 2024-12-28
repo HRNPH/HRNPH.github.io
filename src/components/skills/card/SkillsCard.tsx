@@ -29,7 +29,7 @@ export const SkillCard = ({
         <ul className="space-y-2">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-center text-gray-300">
-              <Code className="mr-2 h-4 w-4 text-blue-400" />
+              <Code className="mr-2 h-4 w-4 min-h-4 min-w-4 text-blue-400" />
               {item}
             </li>
           ))}

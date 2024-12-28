@@ -57,11 +57,17 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
-			}
+			},
+			spacing: {
+				18: '4.5rem', // Custom gap
+			},
 		},
 		fontFamily: {
 			mitrSans: ['var(--font-mitr-sans)'],
 		},
 	},
-	plugins: [tailwindcssAnimate],
+	plugins: [
+		tailwindcssAnimate,
+		require('@tailwindcss/aspect-ratio'),
+	]
 } satisfies Config;

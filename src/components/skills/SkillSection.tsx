@@ -5,6 +5,7 @@ interface SkillsSectionProps {
   skills: Skill[];
   className?: string;
 }
+
 const SkillsSection = ({ skills, className }: SkillsSectionProps) => (
   <section className={`py-20 relative overflow-hidden ${className}`}>
     <div className="container mx-auto px-6">
@@ -14,13 +15,11 @@ const SkillsSection = ({ skills, className }: SkillsSectionProps) => (
         </h2>
       </ParallaxWrapper>
       <ParallaxWrapper speed={5}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
           {skills.map((skillSet, index) => (
-            <SkillCard
-              key={index}
-              category={skillSet.category}
-              items={skillSet.items}
-            />
+            <div key={index} className="mb-6 break-inside-avoid">
+              <SkillCard category={skillSet.category} items={skillSet.items} />
+            </div>
           ))}
         </div>
       </ParallaxWrapper>

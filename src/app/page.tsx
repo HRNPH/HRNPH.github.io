@@ -10,16 +10,53 @@ export default function Home() {
       <SkillsSection
         skills={[
           {
-            category: "Languages",
+            category: "Programming Languages",
             items: ["TypeScript", "Python", "C++"],
           },
           {
-            category: "Frameworks",
-            items: ["React", "Next.js", "ExpressJs", "NestJs", "React Native"],
+            category: "Skills",
+            items: [
+              "AI/ML (PyTorch, Scikit-learn)",
+              "Fullstack Web Development",
+              "Mobile (React Native)",
+              "DevOps, CI/CD",
+            ],
           },
           {
-            category: "DevOps",
-            items: ["Docker", "Kubernetes", "Github Actions"],
+            category: "Tool Chains",
+            items: [
+              "PyTorch, Scikit-learn",
+              "React, Next.js, Astro",
+              "Express, NestJS",
+              "FastAPI, LiteStar",
+              "GitHub Actions, GitLab CI",
+              "Dockers, k8s, ArgoCD",
+              "Cloudflare",
+              "Proxmox",
+              "Terraform, Packer",
+            ],
+          },
+          {
+            category: "Interest",
+            items: [
+              "ML/DL",
+              "Startup",
+              "Medical Technology",
+              "Cloud Computing",
+              "Homelab, Home Datacenter",
+              "Anime, Manga, Light Novel",
+            ],
+          },
+          {
+            category: "Languages",
+            items: ["Thai (Native)", "English (Fluent)"],
+          },
+          {
+            category: "Education",
+            items: [
+              "Chulalongkorn University",
+              "Computer Engineering & Digital Technology (CEDT)",
+            ],
           },
         ]}
       />
