@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Script from "next/script";
-import { SkillsSection } from "./SkillSection";
 import Background from "../BgWrapper";
+import SkillsSection from "./SkillSection";
 
 const meta: Meta<typeof SkillsSection> = {
   title: "Landing/SkillSection",
@@ -23,7 +23,6 @@ const meta: Meta<typeof SkillsSection> = {
       <div className="w-full h-full flex flex-col items-center justify-center">
         <SkillsSection {...args} />
       </div>
-      {/* Self Closing BG Decorator */}
     </Background>
   ),
   tags: ["autodocs"],
