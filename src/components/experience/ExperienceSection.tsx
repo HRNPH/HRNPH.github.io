@@ -8,7 +8,7 @@ export type Experience = {
 };
 
 const ExperienceSection = ({ experience }: { experience: Experience[] }) => (
-  <section className="py-20 relative">
+  <section id="experience" className="py-20 relative">
     <div className="container mx-auto px-6">
       <ParallaxWrapper speed={10}>
         <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">

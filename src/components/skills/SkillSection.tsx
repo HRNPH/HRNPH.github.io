@@ -7,7 +7,10 @@ interface SkillsSectionProps {
 }
 
 const SkillsSection = ({ skills, className }: SkillsSectionProps) => (
-  <section className={`py-20 relative overflow-hidden ${className}`}>
+  <section
+    id="skills"
+    className={`py-20 relative overflow-hidden ${className}`}
+  >
     <div className="container mx-auto px-6">
       <ParallaxWrapper speed={10}>
         <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">

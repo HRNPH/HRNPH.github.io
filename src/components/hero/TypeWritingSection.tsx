@@ -14,6 +14,8 @@ export const TypeWritingBio = () => {
           loop: true,
           deleteSpeed: 50,
           delay: 25,
+          cursor: "|",
+          cursorClassName: "text-background animate-pulse",
         }}
       />
     </h1>

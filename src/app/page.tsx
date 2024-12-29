@@ -8,59 +8,6 @@ export default function Home() {
   return (
     <div className="w-screen min-h-screen h-full">
       <HeroSection className="pt-16 sm:pt-2" />
-      <SkillsSection
-        skills={[
-          {
-            category: "Programming Languages",
-            items: ["TypeScript", "Python", "C++"],
-          },
-          {
-            category: "Skills",
-            items: [
-              "AI/ML (PyTorch, Scikit-learn)",
-              "Fullstack Web Development",
-              "Mobile (React Native)",
-              "DevOps, CI/CD",
-            ],
-          },
-          {
-            category: "Tool Chains",
-            items: [
-              "PyTorch, Scikit-learn",
-              "React, Next.js, Astro",
-              "Express, NestJS",
-              "FastAPI, LiteStar",
-              "GitHub Actions, GitLab CI",
-              "Dockers, k8s, ArgoCD",
-              "Cloudflare",
-              "Proxmox",
-              "Terraform, Packer",
-            ],
-          },
-          {
-            category: "Interest",
-            items: [
-              "ML/DL",
-              "Startup",
-              "Medical Technology",
-              "Cloud Computing",
-              "Homelab, Home Datacenter",
-              "Anime, Manga, Light Novel",
-            ],
-          },
-          {
-            category: "Languages",
-            items: ["Thai (Native)", "English (Fluent)"],
-          },
-          {
-            category: "Education",
-            items: [
-              "Chulalongkorn University",
-              "Computer Engineering & Digital Technology (CEDT)",
-            ],
-          },
-        ]}
-      />
       <ExperienceSection
         experience={[
           {
@@ -111,6 +58,59 @@ export default function Home() {
               "Handled teaching and mentoring students in high school data science projects.",
             period: "January - June 2023",
             title: "Teaching Assistant",
+          },
+        ]}
+      />
+      <SkillsSection
+        skills={[
+          {
+            category: "Programming Languages",
+            items: ["TypeScript", "Python", "C++"],
+          },
+          {
+            category: "Skills",
+            items: [
+              "AI/ML (PyTorch, Scikit-learn)",
+              "Fullstack Web Development",
+              "Mobile (React Native)",
+              "DevOps, CI/CD",
+            ],
+          },
+          {
+            category: "Tool Chains",
+            items: [
+              "PyTorch, Scikit-learn",
+              "React, Next.js, Astro",
+              "Express, NestJS",
+              "FastAPI, LiteStar",
+              "GitHub Actions, GitLab CI",
+              "Dockers, k8s, ArgoCD",
+              "Cloudflare",
+              "Proxmox",
+              "Terraform, Packer",
+            ],
+          },
+          {
+            category: "Interest",
+            items: [
+              "ML/DL",
+              "Startup",
+              "Medical Technology",
+              "Cloud Computing",
+              "Homelab, Home Datacenter",
+              "Anime, Manga, Light Novel",
+            ],
+          },
+          {
+            category: "Languages",
+            items: ["Thai (Native)", "English (Fluent)"],
+          },
+          {
+            category: "Education",
+            items: [
+              "Chulalongkorn University",
+              "Computer Engineering & Digital Technology (CEDT)",
+            ],
           },
         ]}
       />

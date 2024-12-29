@@ -25,7 +25,7 @@ const HeroSection = ({ className }: { className?: string }) => {
             .
           </h1>
           <TypeWritingBio />
-          <p className="text-base text-gray-300">
+          <p className="text-base text-background">
             <span className="font-medium bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent">
               Welcome to my personal website!
             </span>{" "}
@@ -34,10 +34,10 @@ const HeroSection = ({ className }: { className?: string }) => {
             ML/DL. From developing AI tools like chatbots and RAG systems to
             deploying them in production, I focus on building complete,
             practical solutions. With experience in web development, cloud
-            platforms, and CI/CD pipelines, I can craft tailored solutions and
-            turn them into functional products or services.
+            platforms, and CI/CD pipelines, I can find the right solutions for
+            your problems and turn them into functional products and services.
           </p>
-          <p className="text-base text-gray-300">
+          <p className="text-sm text-background">
             Beyond technical work, I’ve co-founded a startup and led projects
             that merge technology with business, giving me hands-on experience
             in transforming ideas into impactful products. Currently studying
@@ -50,12 +50,15 @@ const HeroSection = ({ className }: { className?: string }) => {
             <Button className="w-full sm:w-auto px-6 py-3 text-lg bg-purple-500 hover:bg-purple-600 text-white transition-colors duration-300">
               Talk With My Secretary
             </Button>
-            <Button
-              variant="outline"
-              className="w-full sm:w-auto px-6 py-3 text-lg border-blue-400 text-blue-400 hover:bg-blue-500/10 transition-colors duration-300 hover:text-white"
-            >
-              Contact Me
-            </Button>
+            {/* Outline A tag for SEO */}
+            <a href="#contact">
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto px-6 py-3 text-lg border-blue-400 text-blue-400 hover:bg-blue-500/10 transition-colors duration-300 hover:text-white"
+              >
+                Contact Me
+              </Button>
+            </a>
           </div>
         </div>
 

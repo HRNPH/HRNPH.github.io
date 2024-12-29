@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Phone } from "lucide-react";
 
 const FooterSection = () => {
   return (
@@ -10,7 +10,7 @@ const FooterSection = () => {
           {/* Personal Bio */}
           <div>
             <h3
-              id="for-seo"
+              id="about"
               className="text-blue-400 text-xl font-bold mb-4"
               about="hirunkul-phimsiri"
             >
@@ -34,13 +34,18 @@ const FooterSection = () => {
                 </a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-blue-300">
-                  Projects
+                <a href="#skills" className="hover:text-blue-300">
+                  Skills
                 </a>
               </li>
               <li>
-                <a href="#skills" className="hover:text-blue-300">
-                  Skills
+                <a href="#experience" className="hover:text-blue-300">
+                  Experience
+                </a>
+              </li>
+              <li>
+                <a href="#projects" className="hover:text-blue-300">
+                  Projects
                 </a>
               </li>
               <li>
@@ -56,29 +61,45 @@ const FooterSection = () => {
             <h3 className="text-blue-400 text-xl font-bold mb-4">
               Connect with Me
             </h3>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/hrnph"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300"
-              >
-                <Github className="h-6 w-6" />
-              </a>
-              <a
-                href="https://linkedin.com/in/hirunkul-phimsiri-1ab52b209"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300"
-              >
-                <Linkedin className="h-6 w-6" />
-              </a>
-              <a
-                href="mailto:hrnph@protonmail.com"
-                className="text-blue-400 hover:text-blue-300"
-              >
-                <Mail className="h-6 w-6" />
-              </a>
+            <div id="contact">
+              <div className="flex space-x-4">
+                <a
+                  href="https://github.com/hrnph"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300"
+                >
+                  <Github className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/hirunkul-phimsiri-1ab52b209"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300"
+                >
+                  <Linkedin className="h-6 w-6" />
+                </a>
+                <a
+                  href="mailto:hrnph@protonmail.com"
+                  className="text-blue-400 hover:text-blue-300"
+                >
+                  <Mail className="h-6 w-6" />
+                </a>
+                <a
+                  href="tel:+66614056229"
+                  className="text-blue-400 hover:text-blue-300"
+                >
+                  <Phone className="h-6 w-6" />
+                </a>
+              </div>
+              <div className="text-left mt-2">
+                <p className="text-gray-400 font-bold">
+                  Email: hrnph@protonmail.com
+                </p>
+                <p className="text-gray-400 font-bold">
+                  Phone: +66 61 405 6229
+                </p>
+              </div>
             </div>
           </div>
         </div>
