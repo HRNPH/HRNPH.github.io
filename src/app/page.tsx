@@ -7,7 +7,7 @@ import SkillsSection from "@/components/skills/SkillSection";
 export default function Home() {
   return (
     <div className="w-screen min-h-screen h-full">
-      <HeroSection />
+      <HeroSection className="pt-16 sm:pt-2" />
       <SkillsSection
         skills={[
           {
@@ -64,25 +64,25 @@ export default function Home() {
       <ExperienceSection
         experience={[
           {
-            company: "CEDT Solution Club",
-            description:
-              "Founded and led the CEDT Solution Club, generating 150,000 THB by creating software solutions for the department. Focused on preparing students for internships by simulating real-world software development practices.",
-            period: "2024 - Present",
-            title: "Club President",
-          },
-          {
-            company: "SolveServe Group",
-            description:
-              "Co-founded a software company, secured over 1.5 million THB contracts within six months, and implemented software solutions using Agile-Waterfall hybrid SDLC.",
-            period: "2023 - Present",
-            title: "Co-Founder, Executive Director",
-          },
-          {
             company: "Cariva Thailand",
             description:
               "Developed and maintained AI service endpoints for products such as PreceptorAI LineOA, supporting over 13,000 users.",
             period: "2023 - Present",
             title: "AI Software Engineer",
+          },
+          {
+            company: "SolveServe Group",
+            description:
+              "Co-founded a legally registered software company, secured over a million THB contracts within six months, controlling software solutions development using Agile-Waterfall hybrid SDLC.",
+            period: "2023 - Present",
+            title: "Co-Founder, Executive Director",
+          },
+          {
+            company: "CEDT Solution Club",
+            description:
+              "Founded and led the CEDT Solution Club, generating 150,000 THB by creating software solutions for the department. Focused on preparing students for internships by simulating real-world software development practices.",
+            period: "2024 - Present",
+            title: "Club President",
           },
           {
             company: "Thailand Securities and Exchange Commission",
