@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -45,33 +46,26 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
           {/* Content Overlay */}
           <div className="absolute inset-0 p-6 flex flex-col justify-end transform transition-transform duration-500">
-            {/* Logo */}
-            <div className="w-12 h-12 rounded-full bg-background/10 backdrop-blur mb-4 p-2">
-              <img
-                src={project.logo || "/api/placeholder/48/48"}
-                alt="logo"
-                className="w-full h-full object-contain"
-              />
-            </div>
-
             {/* Title & Description */}
-            <h3 className="text-2xl font-bold text-background mb-2 transform group-hover:translate-x-2 transition-transform duration-500">
-              {project.title}
-            </h3>
-            <p className="text-blue-300 mb-4 line-clamp-2 transform group-hover:translate-x-2 transition-transform duration-500 delay-75">
-              {project.description}
-            </p>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/70 to-transparent p-4 shadow-lg">
+              <h3 className="text-2xl font-bold text-background mb-2 transform group-hover:translate-x-2 transition-transform duration-500 shadow-2xl">
+                {project.title}
+              </h3>
+              <p className="text-blue-300 mb-4 line-clamp-2 transform group-hover:translate-x-2 transition-transform duration-500 delay-75">
+                {project.description}
+              </p>
 
-            {/* Tech Tags */}
-            <div className="flex flex-wrap gap-2 transform group-hover:translate-x-2 transition-transform duration-500 delay-100">
-              {project.tags?.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 rounded-full text-sm bg-blue-900/40 backdrop-blur text-blue-300"
-                >
-                  {tag}
-                </span>
-              ))}
+              {/* Tech Tags */}
+              <div className="flex flex-wrap gap-2 transform group-hover:translate-x-2 transition-transform duration-500 delay-100">
+                {project.tags?.map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1 rounded-full text-sm bg-blue-900/40 backdrop-blur text-blue-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* View More Button */}
@@ -118,15 +112,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </span>
               ))}
             </div>
-            {project.link && (
-              <Button
-                className="mt-4 bg-gradient-to-r from-blue-600 to-purple-500 hover:from-blue-500 hover:to-purple-400 text-background"
-                onClick={() => window.open(project.link, "_blank")}
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Visit Project
-              </Button>
-            )}
+            <div className="flex justify-end">
+              {project.link && (
+                <Button
+                  className="mt-4 bg-gradient-to-r from-blue-600 to-purple-500 hover:from-blue-500 hover:to-purple-400 text-background border-0"
+                  onClick={() => window.open(project.link, "_blank")}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Visit Project
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </DialogContent>
@@ -134,20 +130,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
   );
 };
 
-const ProjectSection = ({
-  title,
-  projects,
-}: {
-  title: string;
-  projects: Project[];
-}) => {
+const ProjectSection = ({ projects }: { projects: Project[] }) => {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section id="projects" className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Section Title */}
         <ParallaxWrapper speed={10}>
-          <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 font-mitrSans">
-            {title}
+          <h2 className="text-4xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 font-mitrSans">
+            Projects
           </h2>
         </ParallaxWrapper>
 

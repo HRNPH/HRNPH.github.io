@@ -13,7 +13,6 @@ const meta: Meta<typeof ProjectSection> = {
     </Background>
   ),
   args: {
-    title: "Project",
     projects: [
       {
         title: "AI Waifu",
