@@ -1,0 +1,25 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "EVA.moc3",
+    "Textures": [
+      "EVA.8192/texture_00.png",
+      "EVA.8192/texture_01.png",
+      "EVA.8192/texture_02.png"
+    ],
+    "Physics": "EVA.physics3.json",
+    "DisplayInfo": "EVA.cdi3.json"
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": []
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": []
+    }
+  ]
+}

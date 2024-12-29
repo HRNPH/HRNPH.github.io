@@ -15,19 +15,27 @@ const WaifuLoader = dynamic(() => import("@/components/live2d/WaifuLoader"), {
 export default function WaifuDisplayer(props: WaifuDisplayerProps) {
   const { id, className, modelOptions } = props;
   const containerRef = useRef<HTMLDivElement>(null);
-  const [resizeTarget, setResizeTarget] = useState<HTMLElement | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [Initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     if (containerRef.current) {
-      setResizeTarget(containerRef.current);
-
-      // Update resize target dynamically on window resize
-      const handleResize = () => {
-        setResizeTarget(containerRef.current);
+      const updateDimensions = () => {
+        if (containerRef.current) {
+          const { offsetWidth, offsetHeight } = containerRef.current;
+          setDimensions({ width: offsetWidth, height: offsetHeight });
+        }
       };
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
+
+      // Initial dimensions
+      updateDimensions();
+
+      // Use ResizeObserver to track size changes
+      const resizeObserver = new ResizeObserver(updateDimensions);
+      resizeObserver.observe(containerRef.current);
+
+      return () => resizeObserver.disconnect();
     }
   }, []);
 
@@ -44,8 +52,11 @@ export default function WaifuDisplayer(props: WaifuDisplayerProps) {
         onLoad={WaifuLoaded} // Initialize WaifuLibs after SDK is loaded
       />
       <div id={id} className={className} ref={containerRef}>
-        {Initialized && resizeTarget ? (
-          <WaifuLoader resizeTo={resizeTarget} modelOptions={modelOptions} />
+        {Initialized ? (
+          <WaifuLoader
+            resizeTo={containerRef.current || undefined}
+            modelOptions={modelOptions}
+          />
         ) : (
           <div>Loading...</div>
         )}

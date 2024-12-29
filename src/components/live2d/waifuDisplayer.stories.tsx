@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import WaifuDisplayer from "./WaifuDisplayer";
-import { type modelOptions } from "./interface";
 
 const meta: Meta = {
   title: "waifu/Displayer",
@@ -72,18 +71,16 @@ export const Primary: Story = {
         x: 0.5,
         y: 0.5,
       },
+
       scale: {
-        x: 0.08,
-        y: 0.08,
+        x: 0.03,
+        y: 0.03,
       },
-      alpha: 0.5, // Transperancy
+
+      alpha: 0.5,
       bgColor: "#000000",
-      model: "/models/SakiUnit/02saki_unit.model3.json",
-      OnLoad: (model) => {
-        model.expression();
-        console.log("Model loaded:", model);
-      },
-    } as modelOptions,
+      model: "/models/EVA/EVA.model3.json",
+    },
   },
   render: (args) => (
     <WaifuDisplayer className="h-64 w-64" modelOptions={args.modelOptions} />
