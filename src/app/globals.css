@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --radius: 0.5rem;
-  }
+	:root {
+		--radius: 0.5rem;
+	}
 }
 
 /* For Skill Masonry */
 .break-inside-avoid {
-  break-inside: avoid;
+	break-inside: avoid;
 }
 
 .columns > * {
-  margin-bottom: 1.5rem; /* Adjust space between items */
+	margin-bottom: 1.5rem; /* Adjust space between items */
 }

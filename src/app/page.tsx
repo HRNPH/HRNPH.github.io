@@ -7,7 +7,7 @@ import SkillsSection from "@/components/skills/SkillSection";
 
 export default function Home() {
   return (
-    <div className="w-screen min-h-screen h-full">
+    <div className="h-full min-h-screen w-screen">
       <HeroSection className="pt-16 sm:pt-2" />
       <ExperienceSection
         experience={[

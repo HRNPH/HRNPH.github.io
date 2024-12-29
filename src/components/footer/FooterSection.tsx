@@ -6,12 +6,12 @@ const FooterSection = () => {
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-6 py-12">
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Personal Bio */}
           <div>
             <h3
               id="about"
-              className="text-blue-400 text-xl font-bold mb-4"
+              className="mb-4 text-xl font-bold text-blue-400"
               about="hirunkul-phimsiri"
             >
               About Me
@@ -26,7 +26,7 @@ const FooterSection = () => {
 
           {/* Navigation Links */}
           <div>
-            <h3 className="text-blue-400 text-xl font-bold mb-4">Navigate</h3>
+            <h3 className="mb-4 text-xl font-bold text-blue-400">Navigate</h3>
             <ul className="space-y-2">
               <li>
                 <nav>
@@ -68,7 +68,7 @@ const FooterSection = () => {
 
           {/* Social Links */}
           <div>
-            <h3 className="text-blue-400 text-xl font-bold mb-4">
+            <h3 className="mb-4 text-xl font-bold text-blue-400">
               Connect with Me
             </h3>
             <div id="contact">
@@ -102,11 +102,11 @@ const FooterSection = () => {
                   <Phone className="h-6 w-6" />
                 </a>
               </div>
-              <div className="text-left mt-2">
-                <p className="text-gray-400 font-bold">
+              <div className="mt-2 text-left">
+                <p className="font-bold text-gray-400">
                   Email: hrnph@protonmail.com
                 </p>
-                <p className="text-gray-400 font-bold">
+                <p className="font-bold text-gray-400">
                   Phone: +66 61 405 6229
                 </p>
               </div>

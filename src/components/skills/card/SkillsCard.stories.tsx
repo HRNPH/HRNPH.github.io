@@ -20,7 +20,7 @@ const meta: Meta<typeof SkillCard> = {
   ],
   render: (args) => (
     <ParallaxBackground>
-      <div className="w-full h-full flex flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center">
         <SkillCard {...args} className="w-1/2 pt-20" />
       </div>
     </ParallaxBackground>

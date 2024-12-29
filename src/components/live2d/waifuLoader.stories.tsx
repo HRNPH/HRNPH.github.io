@@ -12,7 +12,7 @@ const WaifuLoader = dynamic(
       throw err;
     }
   },
-  { ssr: false, loading: () => <div>Loading...</div> }
+  { ssr: false, loading: () => <div>Loading...</div> },
 );
 
 const meta: Meta = {
@@ -41,7 +41,7 @@ export const Primary: Story = {
   render: () => (
     <WaifuLoader
       id="model"
-      className="border-solid border-red-500 border-8"
+      className="border-8 border-solid border-red-500"
       resizeTo={window}
     />
   ),

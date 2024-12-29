@@ -51,7 +51,7 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
 
     Live2DModel.from(
       modelOptions?.model ??
-        "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json"
+        "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json",
     ).then((model) => {
       app.stage.addChild(model);
 

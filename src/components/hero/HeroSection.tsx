@@ -1,4 +1,3 @@
-import Typewriter from "typewriter-effect";
 import { Button } from "@/components/ui/button";
 import ProfileFrame from "./profile/ProfileFrame";
 import { TypeWritingBio } from "./TypeWritingSection";
@@ -6,20 +5,20 @@ import { TypeWritingBio } from "./TypeWritingSection";
 const HeroSection = ({ className }: { className?: string }) => {
   return (
     <section
-      className={`relative min-h-screen w-full flex items-center overflow-hidden text-white ${className}`}
+      className={`relative flex min-h-screen w-full items-center overflow-hidden ${className}`}
     >
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute left-1/4 top-1/4 h-96 w-96 animate-pulse rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 animate-pulse rounded-full bg-purple-500/20 blur-3xl delay-1000" />
       </div>
 
       {/* Container for overall layout */}
-      <div className="container relative mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-6 z-10">
+      <div className="container relative z-10 mx-auto flex flex-col items-center justify-between gap-12 px-6 lg:ml-24 lg:flex-row">
         {/* Left Text Content */}
-        <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+        <div className="w-full space-y-6 text-center lg:w-1/2 lg:text-left">
+          <h1 className="text-4xl font-extrabold leading-tight md:text-5xl lg:text-6xl">
             Hello, I&apos;m{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Guide
             </span>
             .
@@ -27,8 +26,8 @@ const HeroSection = ({ className }: { className?: string }) => {
           <TypeWritingBio />
           <div>
             {/* Full bio for desktop */}
-            <p className="hidden lg:block text-base text-background">
-              <span className="font-medium bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent">
+            <p className="hidden text-background sm:text-base lg:block">
+              <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text font-medium text-transparent">
                 Welcome to my personal website!
               </span>{" "}
               Hi, I’m Guide, an ML Engineer and Full-Stack Developer. My passion
@@ -41,8 +40,8 @@ const HeroSection = ({ className }: { className?: string }) => {
               and services.
             </p>
             {/* Concise bio for mobile */}
-            <p className="block lg:hidden text-sm text-background">
-              <span className="font-medium bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent">
+            <p className="block text-xl text-background lg:hidden">
+              <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text font-medium text-transparent">
                 Welcome to my personal website!
               </span>{" "}
               Hi, I’m Guide, an ML Engineer and Developer passionate about AI
@@ -50,15 +49,15 @@ const HeroSection = ({ className }: { className?: string }) => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:space-x-4 items-center justify-center lg:justify-start">
-            <Button className="w-full sm:w-auto px-6 py-3 text-lg bg-purple-500 hover:bg-purple-600 text-white transition-colors duration-300">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:space-x-4 lg:justify-start">
+            <Button className="w-full bg-purple-500 px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-purple-600 sm:w-auto">
               Talk To My AI Secretary
             </Button>
             {/* Outline A tag for SEO */}
             <a href="#contact" className="w-full sm:w-auto">
               <Button
                 variant="outline"
-                className="w-full sm:w-auto px-6 py-3 text-lg border-blue-400 text-blue-400 hover:bg-blue-500/10 transition-colors duration-300 hover:text-white"
+                className="w-full border-blue-400 px-6 py-3 text-lg text-blue-400 transition-colors duration-300 hover:bg-blue-500/10 hover:text-white sm:w-auto"
               >
                 Contact Me?
               </Button>
@@ -67,7 +66,7 @@ const HeroSection = ({ className }: { className?: string }) => {
         </div>
 
         {/* Right Photo Content */}
-        <ProfileFrame className="w-full lg:w-1/2 flex items-center justify-center" />
+        <ProfileFrame className="flex w-full items-center justify-center lg:w-1/2" />
       </div>
     </section>
   );

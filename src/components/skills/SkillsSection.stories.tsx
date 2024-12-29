@@ -20,7 +20,7 @@ const meta: Meta<typeof SkillsSection> = {
   ],
   render: (args) => (
     <Background>
-      <div className="w-full h-full flex flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center">
         <SkillsSection {...args} />
       </div>
     </Background>

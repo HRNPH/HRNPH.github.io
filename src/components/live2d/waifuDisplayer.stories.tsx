@@ -86,6 +86,6 @@ export const Primary: Story = {
     } as modelOptions,
   },
   render: (args) => (
-    <WaifuDisplayer className="w-64 h-64" modelOptions={args.modelOptions} />
+    <WaifuDisplayer className="h-64 w-64" modelOptions={args.modelOptions} />
   ),
 };

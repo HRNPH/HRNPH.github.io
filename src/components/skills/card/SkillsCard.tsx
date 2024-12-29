@@ -19,9 +19,9 @@ export const SkillCard = ({
   className,
 }: SkillsSectionProps) => (
   <div
-    className={`transform hover:scale-105 transition-transform ${className}`}
+    className={`transform transition-transform hover:scale-105 ${className}`}
   >
-    <Card className="bg-gray-800/50 backdrop-blur border-gray-700 hover:border-blue-500 transition-colors">
+    <Card className="border-gray-700 bg-gray-800/50 backdrop-blur transition-colors hover:border-blue-500">
       <CardHeader>
         <CardTitle className="text-blue-300">{category}</CardTitle>
       </CardHeader>
@@ -29,7 +29,7 @@ export const SkillCard = ({
         <ul className="space-y-2">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-center text-gray-300">
-              <Code className="mr-2 h-4 w-4 min-h-4 min-w-4 text-blue-400" />
+              <Code className="mr-2 h-4 min-h-4 w-4 min-w-4 text-blue-400" />
               {item}
             </li>
           ))}

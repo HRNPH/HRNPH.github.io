@@ -3,7 +3,7 @@ import Typewriter from "typewriter-effect";
 
 export const TypeWritingBio = () => {
   return (
-    <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 text-2xl h-16 sm:h-full">
+    <h1 className="h-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-2xl text-transparent sm:h-full">
       <Typewriter
         options={{
           strings: [
