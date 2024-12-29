@@ -79,7 +79,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </DialogTrigger>
 
       {/* Project Details Modal */}
-      <DialogContent className="sm:max-w-[700px] bg-gray-900/95 backdrop-blur border-gray-800 font-mitrSans text-background">
+      <DialogContent className="sm:max-w-[700px] bg-gray-900/95 backdrop-blur border-gray-800 font-mitrSans text-background max-h-screen sm:h-5/6 overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-background flex items-center gap-4">
             <img
@@ -91,11 +91,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </DialogTitle>
         </DialogHeader>
         <div className="mt-4">
-          <div className="aspect-video w-full rounded-lg overflow-hidden mb-6">
+          <div className="aspect-video w-full max-w-screen-md mx-auto rounded-lg overflow-hidden mb-6">
             <img
               src={project.image || "/api/placeholder/600/400"}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           <div className="space-y-4">
@@ -136,19 +136,21 @@ const ProjectSection = ({ projects }: { projects: Project[] }) => {
       <div className="container mx-auto px-6">
         {/* Section Title */}
         <ParallaxWrapper speed={10}>
-          <h2 className="text-4xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 font-mitrSans">
+          <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 font-mitrSans">
             Projects
           </h2>
         </ParallaxWrapper>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-18">
-          {projects.map((project, index) => (
-            <ParallaxWrapper key={index} speed={5 + (index % 3) * 2}>
-              <ProjectCard project={project} />
-            </ParallaxWrapper>
-          ))}
-        </div>
+        {/* Projects Masonry Grid */}
+        <ParallaxWrapper speed={5}>
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
+            {projects.map((project, index) => (
+              <div key={index} className="mb-6 break-inside-avoid">
+                <ProjectCard project={project} />
+              </div>
+            ))}
+          </div>
+        </ParallaxWrapper>
       </div>
     </section>
   );

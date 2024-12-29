@@ -70,7 +70,7 @@ export default function Home() {
               "An Open-Source AI Project with over 400 stars on GitHub.",
             tags: ["AI/ML", "VTubing", "Open Source"],
             image: "/images/projects/aiwaifu/01.png",
-            logo: "https://www.creativefabrica.com/wp-content/uploads/2023/09/22/anime-girl-mascot-logo-Graphics-79872002-1.jpg",
+            logo: "https://avatars.githubusercontent.com/u/51855316?s=48&v=4",
             full_description:
               "AI Waifu is an open-source framework that integrates AI with VTuber Studio, enabling customizable AI avatars. It features emotion-to-animation mapping and real-time lip sync powered by phoneme classifiers, providing a foundation for building AI VTubers or assistants.",
             link: "https://github.com/HRNPH/AIwaifu",
@@ -78,45 +78,59 @@ export default function Home() {
           {
             title: "MR-Rehab",
             description: "An AI-powered tele-rehabilitation solution.",
-            tags: ["AI/ML", "Healthcare", "Rehabilitation"],
-            image: "/images/projects/mrrehab/01.png",
-            logo: "https://mr-rehab.com/icon.png",
+            tags: ["AI/ML", "Medical AI", "Tele-rehabilitation"],
+            image: "/images/projects/mr-rehab/01.jpeg",
+            logo: "https://media.licdn.com/dms/image/v2/D560BAQFrsmjuaypCoQ/company-logo_200_200/company-logo_200_200/0/1725839850592?e=1743638400&v=beta&t=dI2oxroQ1RD3deHa3elEN5q2MUuBTyMf3sLZcH2nfFI",
             full_description:
               "MR-Rehab is an AI-powered solution designed for tele-rehabilitation. It leverages AI to assist in post-treatment exercises and progress monitoring, featuring cloud infrastructure and CI/CD pipelines for scalable deployment.",
-            link: "https://example.com/mr-rehab",
-          },
-          {
-            title: "The Ritz AI",
-            description:
-              "An AI-powered personal assistant for clinic services.",
-            tags: ["AI/ML", "Healthcare", "Customer Support"],
-            image: "/images/projects/theritz/01.png",
-            logo: "/images/projects/theritz/logo.png",
-            full_description:
-              "The Ritz AI is a personal assistant for SpaceX Clinic of Mhor Ritz, featuring RAG (Retrieval-Augmented Generation) to recommend clinic products, assist with upselling, and answer user questions about the clinic’s services.",
-            link: "https://example.com/the-ritz-ai",
-          },
-          {
-            title: "PreceptorAI",
-            description: "A medical chatbot assisting over 12,000 users.",
-            tags: ["AI/ML", "Healthcare", "Chatbot"],
-            image: "/images/projects/preceptorai/01.png",
-            logo: "/images/projects/preceptorai/logo.png",
-            full_description:
-              "PreceptorAI is a medical chatbot powered by LLM and RAG technology to assist medical professionals and students in answering questions and accessing resources. It serves over 12,000 users with accurate, AI-driven support.",
-            link: "https://example.com/preceptorai",
+            link: "https://www.linkedin.com/company/mr-rehabth/posts/?feedView=all",
           },
           {
             title: "My Homelab",
             description:
               "A homelab with Proxmox cluster setup provisioned with Terraform. and Packer.",
             tags: ["Homelab", "DevOps"],
-            image: "/images/projects/preceptorai/01.png",
-            logo: "/images/projects/preceptorai/logo.png",
+            image: "/images/projects/myhomelab/01.png",
+            logo: "/images/projects/myhomelab/logo.png",
             full_description:
               "A homelab set up as a Proxmox cluster, provisioned using Terraform and Packer for creating cloud-init template. It is used for learning various technologies and hosting personal projects, including this website. The setup includes a local Kubernetes cluster for experimenting with GitOps workflows, ArgoCD, and remote development servers powered by my two 4070 TI GPUs. The servers run privately on a home network, accessible only via VPN through Tailscale. Public access is managed using Cloudflare Tunnel, while internal services for personal and business use are secured with Cloudflare Access.",
-            link: "https://example.com/preceptorai",
+            link: "https://github.com/HRNPH/HomePacker",
           },
+          // !: Completely Filled
+          // {
+          //   title: "PythaiNLP/Khavee",
+          //   description:
+          //     "A one of the two main contributor to the PyThaiNLP library, introducing the first Thai Khavee (กวี) NLP toolkit.",
+          //   tags: ["AI/ML", "NLP", "Open Source"],
+          //   image: "/images/projects/pythainlp/01.png",
+          //   logo: "/images/projects/pythainlp/logo.png",
+          //   full_description:
+          //     "PythaiNLP/Khavee is a nice addition to the PyThaiNLP ecosystem, focusing on Thai natural language processing. As one of the main contributor, I helped develop Khavee (กวี), the first opensource python Thai poetry and literature analysis toolkit. It includes tools for tokenization, rhyme detection, and more, help researchers and developers to process Thai literary works with ease.",
+          //   link: "https://pythainlp.org/dev-docs/api/khavee.html",
+          // },
+
+          // TODO: Add more projects
+          // {
+          //   title: "The Ritz AI",
+          //   description:
+          //     "An AI-powered personal assistant for clinic services.",
+          //   tags: ["AI/ML", "Healthcare", "Customer Support"],
+          //   image: "/images/projects/theritz/01.png",
+          //   logo: "/images/projects/theritz/logo.png",
+          //   full_description:
+          //     "The Ritz AI is a personal assistant for SpaceX Clinic of Mhor Ritz, featuring RAG (Retrieval-Augmented Generation) to recommend clinic products, assist with upselling, and answer user questions about the clinic’s services.",
+          //   link: "https://example.com/the-ritz-ai",
+          // },
+          // {
+          //   title: "PreceptorAI",
+          //   description: "A medical chatbot assisting over 12,000 users.",
+          //   tags: ["AI/ML", "Healthcare", "Chatbot"],
+          //   image: "/images/projects/preceptorai/01.png",
+          //   logo: "/images/projects/preceptorai/logo.png",
+          //   full_description:
+          //     "PreceptorAI is a medical chatbot powered by LLM and RAG technology to assist medical professionals and students in answering questions and accessing resources. It serves over 12,000 users with accurate, AI-driven support.",
+          //   link: "https://example.com/preceptorai",
+          // },
         ]}
       />
       <SkillsSection
