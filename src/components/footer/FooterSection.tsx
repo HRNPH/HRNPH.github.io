@@ -29,29 +29,39 @@ const FooterSection = () => {
             <h3 className="text-blue-400 text-xl font-bold mb-4">Navigate</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="hover:text-blue-300">
-                  About Me
-                </a>
+                <nav>
+                  <a href="#about" className="hover:text-blue-300">
+                    About Me
+                  </a>
+                </nav>
               </li>
               <li>
-                <a href="#skills" className="hover:text-blue-300">
-                  Skills
-                </a>
+                <nav>
+                  <a href="#skills" className="hover:text-blue-300">
+                    Skills
+                  </a>
+                </nav>
               </li>
               <li>
-                <a href="#experience" className="hover:text-blue-300">
-                  Experience
-                </a>
+                <nav>
+                  <a href="#experience" className="hover:text-blue-300">
+                    Experience
+                  </a>
+                </nav>
               </li>
               <li>
-                <a href="#projects" className="hover:text-blue-300">
-                  Projects
-                </a>
+                <nav>
+                  <a href="#projects" className="hover:text-blue-300">
+                    Projects
+                  </a>
+                </nav>
               </li>
               <li>
-                <a href="#contact" className="hover:text-blue-300">
-                  Contact
-                </a>
+                <nav>
+                  <a href="#contact" className="hover:text-blue-300">
+                    Contact
+                  </a>
+                </nav>
               </li>
             </ul>
           </div>

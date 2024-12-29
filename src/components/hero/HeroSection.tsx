@@ -25,38 +25,42 @@ const HeroSection = ({ className }: { className?: string }) => {
             .
           </h1>
           <TypeWritingBio />
-          <p className="text-base text-background">
-            <span className="font-medium bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent">
-              Welcome to my personal website!
-            </span>{" "}
-            Hi, I’m Guide, an ML Engineer and Full-Stack Developer. My passion
-            lies in creating systems that address real-world challenges through
-            ML/DL. From developing AI tools like chatbots and RAG systems to
-            deploying them in production, I focus on building complete,
-            practical solutions. With experience in web development, cloud
-            platforms, and CI/CD pipelines, I can find the right solutions for
-            your problems and turn them into functional products and services.
-          </p>
-          <p className="text-sm text-background">
-            Beyond technical work, I’ve co-founded a startup and led projects
-            that merge technology with business, giving me hands-on experience
-            in transforming ideas into impactful products. Currently studying
-            Computer Engineering at Chulalongkorn University, I actively
-            contribute to open-source projects and enjoy collaborating to create
-            meaningful technology.
-          </p>
+          <div>
+            {/* Full bio for desktop */}
+            <p className="hidden lg:block text-base text-background">
+              <span className="font-medium bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent">
+                Welcome to my personal website!
+              </span>{" "}
+              Hi, I’m Guide, an ML Engineer and Full-Stack Developer. My passion
+              lies in creating systems that address real-world challenges
+              through ML/DL. From developing AI tools like chatbots and RAG
+              systems to deploying them in production, I focus on building
+              complete, practical solutions. With experience in web development,
+              cloud platforms, and CI/CD pipelines, I can find the right
+              solutions for your problems and turn them into functional products
+              and services.
+            </p>
+            {/* Concise bio for mobile */}
+            <p className="block lg:hidden text-sm text-background">
+              <span className="font-medium bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent">
+                Welcome to my personal website!
+              </span>{" "}
+              Hi, I’m Guide, an ML Engineer and Developer passionate about AI
+              tools and creating systems that solve real-world challenges.
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:space-x-4 items-center justify-center lg:justify-start">
             <Button className="w-full sm:w-auto px-6 py-3 text-lg bg-purple-500 hover:bg-purple-600 text-white transition-colors duration-300">
-              Talk With My Secretary
+              Talk To My AI Secretary
             </Button>
             {/* Outline A tag for SEO */}
-            <a href="#contact">
+            <a href="#contact" className="w-full sm:w-auto">
               <Button
                 variant="outline"
                 className="w-full sm:w-auto px-6 py-3 text-lg border-blue-400 text-blue-400 hover:bg-blue-500/10 transition-colors duration-300 hover:text-white"
               >
-                Contact Me
+                Contact Me?
               </Button>
             </a>
           </div>
