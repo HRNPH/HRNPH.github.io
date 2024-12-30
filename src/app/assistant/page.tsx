@@ -8,6 +8,23 @@ const WaifuLoader = dynamic(() => import("@/components/live2d/WaifuLoader"), {
   ssr: false,
 });
 
+// Hook for detecting screen size
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) setMatches(media.matches);
+
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+
+    return () => media.removeEventListener("change", listener);
+  }, [query, matches]);
+
+  return matches;
+}
+
 export default function MyAssistant() {
   const [live2dInjected, setLive2dInjected] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
@@ -18,10 +35,11 @@ export default function MyAssistant() {
   };
 
   const containerRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const resizeTarget = useMemo(() => containerRef.current, []);
-  const modelsConfig = useMemo(
+
+  const isDesktop = useMediaQuery("(min-width: 1024px)"); // Detect desktop screens
+
+  // Eva Models Configuration
+  const defaultModelOptions = useMemo(
     () =>
       ({
         name: "EVA",
@@ -32,35 +50,24 @@ export default function MyAssistant() {
           console.log("Model Loaded");
           setModelLoaded(true);
         },
-        alpha: 0,
       }) satisfies modelOptions,
-    [], // Ensure the object is stable unless dependencies change
+    [],
   );
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return; // Skip if the container is not ready
-
-    // Update dimensions when the container resizes
-    const updateDimensions = () => {
-      const { offsetWidth, offsetHeight } = container;
-      setDimensions(
-        ({ width, height }) =>
-          width !== offsetWidth || height !== offsetHeight
-            ? { width: offsetWidth, height: offsetHeight }
-            : { width, height }, // Return the same object to avoid unnecessary updates
-      );
-    };
-
-    // Initialize dimensions
-    updateDimensions();
-
-    // Observe changes in container size
-    const resizeObserver = new ResizeObserver(updateDimensions);
-    resizeObserver.observe(container);
-
-    return () => resizeObserver.disconnect();
-  }, []);
+  const modelsOption = useMemo(() => {
+    if (isDesktop) {
+      return {
+        ...defaultModelOptions,
+        alpha: 0,
+      };
+    } else {
+      return {
+        ...defaultModelOptions,
+        scale: { x: 0.1, y: 0.1 },
+        position: { x: 0.5, y: 0.37 },
+      };
+    }
+  }, [isDesktop, defaultModelOptions]);
 
   return (
     <>
@@ -70,17 +77,16 @@ export default function MyAssistant() {
         onLoad={onLive2dScriptLoad}
       />
       <main>
-        {/* Desktop View */}
         <div
-          id="dekstop-view"
-          className="bg-assistant-background-full hidden h-screen w-full bg-cover lg:block"
+          id="assistant-view"
+          className={`bg-assistant-background-${isDesktop ? "full" : "mobile"} h-screen w-full bg-cover`}
         >
           {live2dInjected ? (
             <div ref={containerRef}>
               <WaifuLoader
-                className={`h-full w-full bg-transparent lg:block ${modelLoaded ? "" : "hidden"}`}
-                resizeTo={resizeTarget || undefined}
-                modelOptions={modelsConfig}
+                className={`h-full w-full bg-transparent ${modelLoaded ? "" : ""}`}
+                resizeTo={containerRef.current || undefined}
+                modelOptions={modelsOption}
               />
               <div
                 className={`flex h-screen items-center justify-center bg-black bg-opacity-50 ${modelLoaded ? "hidden" : ""}`}
@@ -95,9 +101,6 @@ export default function MyAssistant() {
           )}
         </div>
       </main>
-      {/* <div className="bg-assistant-background-full h-screen w-full bg-cover lg:hidden">
-        <div className="flex h-full items-center justify-center"></div>
-      </div> */}
     </>
   );
 }
