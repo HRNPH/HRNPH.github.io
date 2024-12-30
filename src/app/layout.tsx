@@ -12,6 +12,7 @@ const mitrSans = localFont({
 export const metadata: Metadata = {
   title: "Hrnph",
   description: "Hirunkul Phimsiri's personal website",
+  icons: ["/icon.jpeg"],
 };
 
 export default function RootLayout({
@@ -21,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/icon.jpeg" type="image/jpeg" sizes="32x32" />
+      </head>
       <body
         className={`${mitrSans.variable}font-mitrSans bg-black antialiased`}
       >
