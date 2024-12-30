@@ -10,7 +10,7 @@ const mitrSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hrnph",
+  title: "Hrnph - Hirunkul Phimsiri",
   description: "Hirunkul Phimsiri's personal website",
   icons: ["/icon.jpeg"],
 };
