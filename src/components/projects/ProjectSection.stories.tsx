@@ -18,7 +18,7 @@ const meta: Meta<typeof ProjectSection> = {
         title: "AI Waifu",
         description: "My Open-Source AI Project with over 400 stars on GitHub.",
         tags: ["AI/ML", "Anime"],
-        image: "/images/projects/aiwaifu/01.png",
+        image: "/images/projects/aiwaifu/01.webp",
         logo: "https://www.creativefabrica.com/wp-content/uploads/2023/09/22/anime-girl-mascot-logo-Graphics-79872002-1.jpg",
         full_description:
           "aiwaifu is an Open sourced finetunable customizable simpable AI waifu inspired by neuro-sama the goal is to just giving everyone a foundational platform to develop their own waifu Powered by opensource AI model for self-hosted/deploy",
@@ -28,7 +28,7 @@ const meta: Meta<typeof ProjectSection> = {
         title: "Project 2",
         description: "Description 2",
         tags: ["tag1", "tag2"],
-        image: "/images/projects/aiwaifu/01.png",
+        image: "/images/projects/aiwaifu/01.webp",
         logo: "https://www.creativefabrica.com/wp-content/uploads/2023/09/22/anime-girl-mascot-logo-Graphics-79872002-1.jpg",
       },
     ],

@@ -76,7 +76,7 @@ export default function Home() {
             description:
               "An Open-Source AI Project with over 400 stars on GitHub.",
             tags: ["AI/ML", "VTubing", "Open Source"],
-            image: "/images/projects/aiwaifu/01.png",
+            image: "/images/projects/aiwaifu/01.webp",
             logo: "https://avatars.githubusercontent.com/u/51855316?s=48&v=4",
             full_description:
               "AI Waifu is an open-source framework that integrates AI with VTuber Studio, enabling customizable AI avatars. It features emotion-to-animation mapping and real-time lip sync powered by custom implementation of an almost realtime phoneme classifiers using mel-spectrogram coefficient, providing a foundation for building AI VTubers or assistants.",
