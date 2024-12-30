@@ -98,9 +98,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
               src={project.image || "/api/placeholder/600/400"}
               alt={project.title}
               className="h-full w-full object-contain"
-              layout="fill"
-              objectFit="contain"
-              objectPosition="center"
+              layout="responsive"
+              width={600}
+              height={400}
             />
           </div>
           <div className="space-y-4">
