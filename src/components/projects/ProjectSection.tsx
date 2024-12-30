@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, X, ChevronRight } from "lucide-react";
+import { ExternalLink, ChevronRight } from "lucide-react";
 import { ParallaxWrapper } from "../providers/ParalaxWrapper";
 
 type Project = {
@@ -22,16 +22,12 @@ type Project = {
 };
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div
-          className="group relative h-96 cursor-pointer overflow-hidden rounded-lg font-mitrSans"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="group relative h-96 cursor-pointer overflow-hidden rounded-lg font-mitrSans">
           {/* Card Background with Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/70 to-gray-900" />
 
