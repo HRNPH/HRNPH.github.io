@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${mitrSans.variable} font-mitrSans antialiased`}>
+      <body
+        className={`${mitrSans.variable}font-mitrSans bg-black antialiased`}
+      >
         <ParallaxBackground>{children}</ParallaxBackground>
       </body>
     </html>

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 import {
   Dialog,
@@ -33,10 +34,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
           {/* Project Image/Logo */}
           <div className="absolute inset-0">
-            <img
+            <Image
               src={project.image || "/api/placeholder/600/400"}
               alt={project.title}
               className="h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-110"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
             />
           </div>
 
@@ -78,20 +82,25 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <DialogContent className="max-h-screen overflow-y-auto border-gray-800 bg-gray-900/95 font-mitrSans text-background backdrop-blur sm:h-5/6 sm:max-w-[700px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-4 text-2xl font-bold text-background">
-            <img
+            <Image
               src={project.logo || "/api/placeholder/48/48"}
               alt="logo"
               className="h-12 w-12 rounded-full"
+              width={48}
+              height={48}
             />
             {project.title}
           </DialogTitle>
         </DialogHeader>
         <div className="mt-4">
           <div className="aspect-video mx-auto mb-6 w-full max-w-screen-md overflow-hidden rounded-lg">
-            <img
+            <Image
               src={project.image || "/api/placeholder/600/400"}
               alt={project.title}
               className="h-full w-full object-contain"
+              layout="fill"
+              objectFit="contain"
+              objectPosition="center"
             />
           </div>
           <div className="space-y-4">
