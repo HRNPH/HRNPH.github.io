@@ -3,9 +3,9 @@
   "FileReferences": {
     "Moc": "EVA.moc3",
     "Textures": [
-      "EVA.8192/texture_00.png",
-      "EVA.8192/texture_01.png",
-      "EVA.8192/texture_02.png"
+      "EVA.8192/texture_00.webp",
+      "EVA.8192/texture_01.webp",
+      "EVA.8192/texture_02.webp"
     ],
     "Physics": "EVA.physics3.json",
     "DisplayInfo": "EVA.cdi3.json"
