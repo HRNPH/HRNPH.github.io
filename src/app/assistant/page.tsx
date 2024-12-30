@@ -79,7 +79,7 @@ export default function MyAssistant() {
       <main>
         <div
           id="assistant-view"
-          className={`bg-assistant-background-${isDesktop ? "full" : "mobile"} h-screen w-full bg-cover`}
+          className={`${isDesktop ? "bg-assistant-background-full" : "bg-assistant-background-fullmobile"} h-screen w-full bg-cover`}
         >
           {live2dInjected ? (
             <div ref={containerRef}>
