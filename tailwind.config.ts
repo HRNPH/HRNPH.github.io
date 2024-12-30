@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import aspectRatio from "@tailwindcss/aspect-ratio";
 
 export default {
 	darkMode: ["class"],
@@ -36,6 +37,8 @@ export default {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+				"assistant-background-full": "url('/images/assistant/background.jpg')",
+				"assistant-background-mobile": "url('/images/assistant/background-mobile.jpg')",
 			},
 			animation: {
 				pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
@@ -66,6 +69,6 @@ export default {
 		fontFamily: {
 			mitrSans: ["var(--font-mitr-sans)"],
 		},
-	},
-	plugins: [tailwindcssAnimate, require("@tailwindcss/aspect-ratio")],
+		plugins: [tailwindcssAnimate, aspectRatio],
+	}
 } satisfies Config;

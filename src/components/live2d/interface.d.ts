@@ -19,6 +19,7 @@ export interface WaifuLoaderProps {
 	className?: string;
 	resizeTo?: HTMLElement | Window;
 	modelOptions?: modelOptions;
+	live2dScriptInjections?: boolean;
 }
 
 // WaifuDisplayer Interfaces

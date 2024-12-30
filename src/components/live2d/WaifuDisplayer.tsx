@@ -13,11 +13,11 @@ const WaifuLoader = dynamic(() => import("@/components/live2d/WaifuLoader"), {
  * Display live2d model on the screen, with the ability to interact with it.
  */
 export default function WaifuDisplayer(props: WaifuDisplayerProps) {
-  const { id, className, modelOptions } = props;
+  const { id, className, modelOptions, live2dScriptInjections } = props;
   const containerRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [Initialized, setInitialized] = useState(false);
+  const [Initialized, setInitialized] = useState(!live2dScriptInjections);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -46,11 +46,13 @@ export default function WaifuDisplayer(props: WaifuDisplayerProps) {
 
   return (
     <>
-      <Script
-        src="sdk/live2dcubismcore.min.js" // Load Live2D Cubism SDK, Needed For WaifuLibs
-        strategy="afterInteractive" // load before anything else
-        onLoad={WaifuLoaded} // Initialize WaifuLibs after SDK is loaded
-      />
+      {live2dScriptInjections && (
+        <Script
+          src="sdk/live2dcubismcore.min.js" // Load Live2D Cubism SDK, Needed For WaifuLibs
+          strategy="afterInteractive" // load before anything else
+          onLoad={WaifuLoaded} // Initialize WaifuLibs after SDK is loaded
+        />
+      )}
       <div id={id} className={className} ref={containerRef}>
         {Initialized ? (
           <WaifuLoader

@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { Live2DModel, MotionPriority } from "pixi-live2d-display/cubism4";
 import * as PIXI from "pixi.js";
+
 import { WaifuLoaderProps } from "./interface";
 import { colorToNumber } from "@/lib/utils";
 
@@ -12,7 +13,9 @@ Live2DModel.registerTicker(PIXI.Ticker);
  * @remarks
  * Use WaifuDisplayer instead for typical use cases.
  */
-export default function WaifuLoader(props: WaifuLoaderProps) {
+export default function WaifuLoader(
+  props: Omit<WaifuLoaderProps, "live2dScriptInjections">,
+) {
   const { id, className, resizeTo, modelOptions } = props;
   // Create canvas ref
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -42,18 +45,26 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
   // Utils Function
 
   useEffect(() => {
-    if (!resizeTo) return;
+    if (!resizeTo) {
+      console.warn("No ResizeTo Element Provided, Using Window");
+    }
     const app = new PIXI.Application({
       view: document.getElementById("canvas") as HTMLCanvasElement,
       autoStart: true,
-      resizeTo: resizeToRef.current,
+      resizeTo: resizeToRef?.current ?? window,
+      // Init with transparent background, Can override default settings
+      backgroundAlpha: modelOptions?.alpha ?? 0,
+      backgroundColor: modelOptions?.bgColor
+        ? colorToNumber(modelOptions?.bgColor)
+        : 0x000000,
     });
 
     Live2DModel.from(
       modelOptions?.model ??
         "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json",
     ).then((model) => {
-      app.stage.addChild(model);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      app.stage.addChild(model as any);
 
       model.anchor.set(anchorX, anchorY);
       model.position.set(clientWidth / 2, clientHeight / 2);
@@ -72,8 +83,6 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
       app.renderer.backgroundColor = modelOptions?.bgColor
         ? colorToNumber(modelOptions?.bgColor)
         : 0x000000;
-
-      // Model Additional Initialization, Can override default settings
       modelOptions?.OnLoad?.(model);
     });
   }, [
@@ -82,15 +91,18 @@ export default function WaifuLoader(props: WaifuLoaderProps) {
     clientHeight,
     clientWidth,
     modelOptions,
-    modelOptions?.alpha,
-    modelOptions?.bgColor,
     resizeTo,
     scaleX,
     scaleY,
   ]);
   return (
     <section id={id} className={className}>
-      <canvas id="canvas" ref={canvasRef} />
+      {/* Default transparent canvas */}
+      <canvas
+        id="canvas"
+        ref={canvasRef}
+        className="h-full w-full bg-transparent"
+      />
     </section>
   );
 }
