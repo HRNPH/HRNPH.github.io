@@ -25,14 +25,14 @@ export default function WaifuLoader(
       ? resizeToRef.current
       : { clientWidth: window.innerWidth, clientHeight: window.innerHeight };
 
-  const { anchorX, anchorY } = modelOptions?.position
+  const { positionX, positionY } = modelOptions?.position
     ? {
-        anchorX: modelOptions.position.x,
-        anchorY: modelOptions.position.y,
+        positionX: modelOptions.position.x,
+        positionY: modelOptions.position.y,
       }
     : {
-        anchorX: 0.5,
-        anchorY: 0.5,
+        positionX: 0.5,
+        positionY: 0.5,
       };
 
   const { scaleX, scaleY } = modelOptions?.scale
@@ -66,9 +66,19 @@ export default function WaifuLoader(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       app.stage.addChild(model as any);
 
-      model.anchor.set(anchorX, anchorY);
-      model.position.set(clientWidth / 2, clientHeight / 2);
-      model.scale.set(scaleX, scaleY);
+      // Positioning And Scaling
+      model.anchor.set(0.5, 0.5); // Center Anchor (always)
+      model.position.set(clientWidth * positionX, clientHeight * positionY);
+      // Screen Size Normalization
+      const { baseXwidth, baseYwidth } = {
+        // Macos 13 inch 1440 x 900 (base resolution)
+        baseXwidth: 1440,
+        baseYwidth: 900,
+      }; // Normalized Scaling with the screen width
+      model.scale.set(
+        (clientWidth / baseXwidth) * scaleX,
+        (clientWidth / baseXwidth) * scaleY,
+      );
 
       //model.expression();
       model.motion("w-adult-blushed01", 0, MotionPriority.FORCE);
@@ -86,8 +96,8 @@ export default function WaifuLoader(
       modelOptions?.OnLoad?.(model);
     });
   }, [
-    anchorX,
-    anchorY,
+    positionX,
+    positionY,
     clientHeight,
     clientWidth,
     modelOptions,

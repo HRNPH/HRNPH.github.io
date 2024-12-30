@@ -44,8 +44,8 @@ export default function MyAssistant() {
       ({
         name: "EVA",
         model: "/models/EVA/EVA.model3.json",
-        scale: { x: 0.065, y: 0.065 },
-        position: { x: 1.65, y: 0.37 },
+        scale: { x: 0.05, y: 0.05 },
+        position: { x: 0.25, y: 0.67 },
         OnLoad: () => {
           console.log("Model Loaded");
           setModelLoaded(true);
@@ -63,8 +63,8 @@ export default function MyAssistant() {
     } else {
       return {
         ...defaultModelOptions,
-        scale: { x: 0.1, y: 0.1 },
-        position: { x: 0.5, y: 0.37 },
+        scale: { x: 0.25, y: 0.25 },
+        position: { x: 0.5, y: 0.65 },
       };
     }
   }, [isDesktop, defaultModelOptions]);
@@ -79,7 +79,7 @@ export default function MyAssistant() {
       <main>
         <div
           id="assistant-view"
-          className={`${isDesktop ? "bg-assistant-background-full" : "bg-assistant-background-fullmobile"} h-screen w-full bg-cover`}
+          className={`${isDesktop ? "bg-assistant-background-full" : "bg-assistant-background-mobile"} h-screen w-full bg-cover`}
         >
           {live2dInjected ? (
             <div ref={containerRef}>
