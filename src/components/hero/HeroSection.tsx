@@ -50,9 +50,11 @@ const HeroSection = ({ className }: { className?: string }) => {
           </div>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:space-x-4 lg:justify-start">
-            <Button className="w-full bg-purple-500 px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-purple-600 sm:w-auto">
-              Talk To My AI Secretary
-            </Button>
+            <a href="/assistant" className="w-full sm:w-auto">
+              <Button className="w-full bg-purple-500 px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-purple-600 sm:w-auto">
+                Talk To My AI Secretary
+              </Button>
+            </a>
             {/* Outline A tag for SEO */}
             <a href="#contact" className="w-full sm:w-auto">
               <Button
