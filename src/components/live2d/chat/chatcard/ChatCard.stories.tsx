@@ -16,8 +16,13 @@ export const Default: Story = {
     message: {
       content: "Hello, how can I help you?",
       id: "1",
-      timestamp: new Date(),
       type: "agent",
     },
   },
+  render: ({ message }) => (
+    <>
+      <ChatCard message={message} />
+      <ChatCard message={{ ...message, type: "user" }} />
+    </>
+  ),
 };
