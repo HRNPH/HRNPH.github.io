@@ -1,5 +1,5 @@
 import { Color } from "@/types/colors";
-import { type Live2DModel, type InternalModel } from "pixi-live2d-display";
+import { type Live2DModel, type InternalModel } from "pixi-live2d-display-lipsyncpatch";
 
 // Shared Interfaces
 export interface modelOptions {

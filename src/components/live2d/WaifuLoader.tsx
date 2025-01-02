@@ -1,12 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { Live2DModel } from "pixi-live2d-display/cubism4";
+import { Live2DModel } from "pixi-live2d-display-lipsyncpatch/cubism4";
 import * as PIXI from "pixi.js";
 
 import { WaifuLoaderProps } from "./interface";
 import { colorToNumber } from "@/lib/utils";
-
-Live2DModel.registerTicker(PIXI.Ticker);
 
 /**
  * Load live2d model on the screen, Offer low-level control.
@@ -62,6 +60,9 @@ export default function WaifuLoader(
     Live2DModel.from(
       modelOptions?.model ??
         "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json",
+      {
+        ticker: PIXI.Ticker.shared,
+      },
     ).then(async (model) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       app.stage.addChild(model as any);
@@ -86,10 +87,12 @@ export default function WaifuLoader(
       });
 
       // Make Canvas Transparent
-      app.renderer.backgroundAlpha = modelOptions?.alpha ?? 0;
-      app.renderer.backgroundColor = modelOptions?.bgColor
-        ? colorToNumber(modelOptions?.bgColor)
-        : 0x000000;
+      app.renderer.background.backgroundColor.setAlpha(
+        modelOptions?.alpha ?? 0,
+      );
+      app.renderer.background.backgroundColor.setValue(
+        modelOptions?.bgColor ? colorToNumber(modelOptions?.bgColor) : 0x000000,
+      );
       await modelOptions?.OnLoad?.(model);
     });
   }, [
