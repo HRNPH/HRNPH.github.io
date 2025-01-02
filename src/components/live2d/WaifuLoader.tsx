@@ -70,6 +70,7 @@ export default function WaifuLoader(
       model.anchor.set(0.5, 0.5); // Center Anchor (always)
       model.position.set(clientWidth * positionX, clientHeight * positionY);
       // Screen Size Normalization
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { baseXwidth, baseYwidth } = {
         // Macos 13 inch 1440 x 900 (base resolution)
         baseXwidth: 1440,
