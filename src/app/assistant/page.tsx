@@ -46,9 +46,10 @@ export default function MyAssistant() {
         model: "/models/EVA/EVA.model3.json",
         scale: { x: 0.05, y: 0.05 },
         position: { x: 0.25, y: 0.67 },
-        OnLoad: () => {
+        OnLoad: async (model) => {
           console.log("Model Loaded");
           setModelLoaded(true);
+          await model.expression(13);
         },
       }) satisfies modelOptions,
     [],

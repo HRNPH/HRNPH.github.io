@@ -10,7 +10,7 @@ export interface modelOptions {
 	background?: string;
 	alpha?: number;
 	bgColor?: Color;
-	OnLoad?: (model: Live2DModel<InternalModel>) => void;
+	OnLoad?: (model: Live2DModel<InternalModel>) => Promise<void>;
 }
 
 // Waifuloaders Interfaces

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { Live2DModel, MotionPriority } from "pixi-live2d-display/cubism4";
+import { Live2DModel } from "pixi-live2d-display/cubism4";
 import * as PIXI from "pixi.js";
 
 import { WaifuLoaderProps } from "./interface";
@@ -62,7 +62,7 @@ export default function WaifuLoader(
     Live2DModel.from(
       modelOptions?.model ??
         "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json",
-    ).then((model) => {
+    ).then(async (model) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       app.stage.addChild(model as any);
 
@@ -81,12 +81,8 @@ export default function WaifuLoader(
         (clientWidth / baseXwidth) * scaleY,
       );
 
-      //model.expression();
-      model.motion("w-adult-blushed01", 0, MotionPriority.FORCE);
-      model.motion("face_lookdown_01", 0, MotionPriority.IDLE);
-      model.on("hit", () => {
+      model.on("hit", async () => {
         console.info("hit");
-        model.expression();
       });
 
       // Make Canvas Transparent
@@ -94,7 +90,7 @@ export default function WaifuLoader(
       app.renderer.backgroundColor = modelOptions?.bgColor
         ? colorToNumber(modelOptions?.bgColor)
         : 0x000000;
-      modelOptions?.OnLoad?.(model);
+      await modelOptions?.OnLoad?.(model);
     });
   }, [
     positionX,

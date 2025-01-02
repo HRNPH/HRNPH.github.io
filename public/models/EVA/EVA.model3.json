@@ -8,7 +8,73 @@
       "EVA.8192/texture_02.webp"
     ],
     "Physics": "EVA.physics3.json",
-    "DisplayInfo": "EVA.cdi3.json"
+    "DisplayInfo": "EVA.cdi3.json",
+    "Expressions": [
+      {
+        "Name": "exp_01_glowing_eyes",
+        "File": "expressions/1.exp3.json"
+      },
+      {
+        "Name": "exp_02_teary_eyes",
+        "File": "expressions/2.exp3.json"
+      },
+      {
+        "Name": "exp_03_sparkling_eyes",
+        "File": "expressions/3.exp3.json"
+      },
+      {
+        "Name": "exp_04_love_eyes",
+        "File": "expressions/4.exp3.json"
+      },
+      {
+        "Name": "exp_05_blindfolded_eyes",
+        "File": "expressions/5.exp3.json"
+      },
+      {
+        "Name": "exp_06_darkened_eyes",
+        "File": "expressions/6.exp3.json"
+      },
+      {
+        "Name": "exp_07_blushing",
+        "File": "expressions/7.exp3.json"
+      },
+      {
+        "Name": "exp_08_wornout_cloths",
+        "File": "expressions/8.exp3.json"
+      },
+      {
+        "Name": "exp_09_no_glasses",
+        "File": "expressions/9.exp3.json"
+      },
+      {
+        "Name": "exp_10_chained_hands",
+        "File": "expressions/10.exp3.json"
+      },
+      {
+        "Name": "exp_11_adjusting_glass",
+        "File": "expressions/11.exp3.json"
+      },
+      {
+        "Name": "exp_12_hand_holding",
+        "File": "expressions/12.exp3.json"
+      },
+      {
+        "Name": "exp_13_hand_on_chest",
+        "File": "expressions/13.exp3.json"
+      },
+      {
+        "Name": "exp_14_hand_hold_document",
+        "File": "expressions/14.exp3.json"
+      },
+      {
+        "Name": "exp_15_hand_hold_microphone",
+        "File": "expressions/15.exp3.json"
+      },
+      {
+        "Name": "exp_16_hand_downbad",
+        "File": "expressions/16.exp3.json"
+      }
+    ]
   },
   "Groups": [
     {
