@@ -13,7 +13,7 @@ const HeroSection = ({ className }: { className?: string }) => {
       </div>
 
       {/* Container for overall layout */}
-      <div className="container relative z-10 mx-auto flex flex-col items-center justify-between gap-12 px-6 lg:ml-24 lg:flex-row">
+      <div className="container relative z-10 mx-auto flex flex-col items-center justify-between gap-12 px-6 lg:flex-row">
         {/* Left Text Content */}
         <div className="w-full space-y-6 text-center lg:w-1/2 lg:text-left">
           <h1 className="text-4xl font-extrabold leading-tight md:text-5xl lg:text-6xl">
