@@ -1,8 +1,10 @@
 "use client";
 import { type modelOptions } from "@/components/live2d/interface";
+import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import Script from "next/script";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { InternalModel, Live2DModel } from "pixi-live2d-display-lipsyncpatch";
+import { useEffect, useMemo, useState } from "react";
 
 const WaifuLoader = dynamic(() => import("@/components/live2d/WaifuLoader"), {
   ssr: false,
@@ -27,14 +29,15 @@ function useMediaQuery(query: string) {
 
 export default function MyAssistant() {
   const [live2dInjected, setLive2dInjected] = useState(false);
+
   const [modelLoaded, setModelLoaded] = useState(false);
+  const [currentModel, setCurrentModel] =
+    useState<Live2DModel<InternalModel> | null>(null);
 
   const onLive2dScriptLoad = () => {
     console.log("Live2D Cubism SDK Loaded");
     setLive2dInjected(true);
   };
-
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const isDesktop = useMediaQuery("(min-width: 1024px)"); // Detect desktop screens
 
@@ -50,24 +53,21 @@ export default function MyAssistant() {
           console.log("Model Loaded");
           setModelLoaded(true);
           await model.expression(13);
+          setCurrentModel(model);
         },
       }) satisfies modelOptions,
     [],
   );
 
-  const modelsOption = useMemo(() => {
+  const modelsOption: modelOptions = useMemo(() => {
+    const options: modelOptions = { ...defaultModelOptions };
     if (isDesktop) {
-      return {
-        ...defaultModelOptions,
-        alpha: 0,
-      };
+      options.alpha = 0;
     } else {
-      return {
-        ...defaultModelOptions,
-        scale: { x: 0.25, y: 0.25 },
-        position: { x: 0.5, y: 0.65 },
-      };
+      options.scale = { x: 0.25, y: 0.25 };
+      options.position = { x: 0.5, y: 0.65 };
     }
+    return options;
   }, [isDesktop, defaultModelOptions]);
 
   return (
@@ -83,10 +83,10 @@ export default function MyAssistant() {
           className={`${isDesktop ? "bg-assistant-background-full" : "bg-assistant-background-mobile"} h-screen w-full bg-cover`}
         >
           {live2dInjected ? (
-            <div ref={containerRef}>
+            <div>
               <WaifuLoader
                 className={`h-full w-full bg-transparent ${modelLoaded ? "" : ""}`}
-                resizeTo={containerRef.current || undefined}
+                // resizeTo={containerRef.current || undefined}
                 modelOptions={modelsOption}
               />
               <div
@@ -100,6 +100,19 @@ export default function MyAssistant() {
               <div className="text-2xl text-white">Loading Cubism SDK...</div>
             </div>
           )}
+          <div className="absolute bottom-0 right-0 p-4 text-xs text-white">
+            <Button
+              onClick={async () => {
+                if (currentModel) {
+                  console.info("Speaking...");
+                  // currentModel.expression(13);
+                  currentModel.speak("/audio/example.wav");
+                }
+              }}
+            >
+              Speech Testing
+            </Button>
+          </div>
         </div>
       </main>
     </>

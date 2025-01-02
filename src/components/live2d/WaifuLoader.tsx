@@ -100,10 +100,10 @@ export default function WaifuLoader(
     positionY,
     clientHeight,
     clientWidth,
-    modelOptions,
     resizeTo,
     scaleX,
     scaleY,
+    modelOptions,
   ]);
   return (
     <section id={id} className={className}>
