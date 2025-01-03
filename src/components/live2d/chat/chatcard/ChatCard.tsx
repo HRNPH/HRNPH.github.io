@@ -9,14 +9,15 @@ export type ChatMessage = {
 
 interface ChatCardProps {
   message: ChatMessage;
+  className?: string;
 }
 
-export const ChatCard: React.FC<ChatCardProps> = ({ message }) => {
+export const ChatCard: React.FC<ChatCardProps> = ({ message, className }) => {
   const isUser = message.type === "user";
 
   return (
     <div
-      className={`flex ${isUser ? "justify-end" : "justify-start"} mb-4 items-center`}
+      className={`flex ${isUser ? "justify-end" : "justify-start"} mb-4 items-center ${className}`}
     >
       {!isUser && (
         <img
@@ -27,7 +28,9 @@ export const ChatCard: React.FC<ChatCardProps> = ({ message }) => {
       )}
       <div
         className={`max-w-xs rounded-lg p-4 ${
-          isUser ? "bg-blue-500 text-white" : "bg-gray-800 text-gray-200"
+          isUser
+            ? "bg-gradient-to-r from-blue-700 to-purple-700 text-white"
+            : "bg-gradient-to-r from-purple-700 to-blue-700 text-white"
         }`}
       >
         <p>{message.content}</p>
