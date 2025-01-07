@@ -158,18 +158,6 @@ export default function MyAssistant() {
               <div className="text-2xl text-white">Loading Cubism SDK...</div>
             </div>
           )}
-          <div className="absolute bottom-0 right-0 p-4 text-xs text-white">
-            <Button
-              onClick={async () => {
-                if (currentModel) {
-                  console.info("Speaking...");
-                  currentModel.speak("/audio/example.wav");
-                }
-              }}
-            >
-              Speech Testing
-            </Button>
-          </div>
         </div>
         <div className="absolute left-0 top-0 flex h-full w-full justify-end bg-black bg-opacity-0">
           <div className="flex h-full w-2/5 flex-col items-end justify-center md:mr-36 lg:mr-60">
@@ -220,6 +208,18 @@ export default function MyAssistant() {
                 </Button>
               </div>
             </section>
+          </div>
+          <div className="absolute bottom-0 right-0 p-4 text-xs text-white">
+            <Button
+              onClick={async () => {
+                if (currentModel) {
+                  console.info("Speaking...");
+                  currentModel.speak("/audio/example.wav");
+                }
+              }}
+            >
+              Speech Testing
+            </Button>
           </div>
         </div>
       </main>
