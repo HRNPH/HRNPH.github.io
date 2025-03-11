@@ -59,7 +59,7 @@ const HeroSection = ({ className }: { className?: string }) => {
             <a href="#contact" className="w-full sm:w-auto">
               <Button
                 variant="outline"
-                className="w-full border-blue-400 px-6 py-3 text-lg text-blue-400 transition-colors duration-300 hover:bg-blue-500/10 hover:text-white sm:w-auto"
+                className="hover:bg-blue-500/1 w-full border-blue-400 bg-transparent px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-blue-500/10 hover:text-blue-400 sm:w-auto"
               >
                 Contact Me?
               </Button>
