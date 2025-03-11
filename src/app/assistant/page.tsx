@@ -6,6 +6,7 @@ import {
 import { TextInputArea } from "@/components/live2d/chat/textinput/TextInput";
 import { type modelOptions } from "@/components/live2d/interface";
 import { Button } from "@/components/ui/button";
+import { ChatEngine } from "@/lib/assistant/chat/ChatEngine";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import { InternalModel, Live2DModel } from "pixi-live2d-display-lipsyncpatch";
@@ -32,35 +33,22 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
-// Mock function for message submission
-async function submitMessage(message: string) {
-  return new Promise<ChatMessage>((resolve) => {
-    console.info("Message submitted:", message);
-    setTimeout(() => {
-      resolve({
-        id: `${Date.now()}`,
-        type: "agent",
-        content: "Here is the information you requested.",
-      });
-    }, 2000);
-  });
-}
-
 export default function MyAssistant() {
   const [live2dInjected, setLive2dInjected] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
   const [currentModel, setCurrentModel] =
     useState<Live2DModel<InternalModel> | null>(null);
 
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
-    {
-      id: "1",
-      type: "agent",
-      content: "Hello! How can I help you today?",
-    },
-  ]);
-
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [isFindingInfo, setIsFindingInfo] = useState(false);
+
+  // Initialize ChatEngine
+  const chatClient = useMemo(() => new ChatEngine(), []);
+
+  // Initialize chat with welcome message
+  useEffect(() => {
+    setChatMessages(chatClient.initChat("Hello! How can I help you today?"));
+  }, [chatClient]);
 
   const onLive2dScriptLoad = () => {
     console.log("Live2D Cubism SDK Loaded");
@@ -97,38 +85,53 @@ export default function MyAssistant() {
   }, [isDesktop, defaultModelOptions]);
 
   const handleSendMessage = async (message: string) => {
+    // Set expression for finding information
+    await currentModel?.internalModel.motionManager.expressionManager?.restoreExpression();
+    await currentModel?.internalModel.motionManager.expressionManager?.setExpression(
+      "exp_14_hand_hold_document",
+    );
+
+    // Add user message to UI immediately for better UX
     const userMessage: ChatMessage = {
-      id: `${Date.now()}`,
+      id: `user-${Date.now()}`,
       type: "user",
       content: message,
     };
-    await currentModel?.internalModel.motionManager.expressionManager?.restoreExpression();
-    const r =
-      await currentModel?.internalModel.motionManager.expressionManager?.setExpression(
-        "exp_14_hand_hold_document",
-      ); // Find information expression
-    console.info(
-      "Expression result",
-      r,
-      currentModel?.internalModel.motionManager.expressionManager?.expressions,
-    );
     setChatMessages((prev) => [...prev, userMessage]);
     setIsFindingInfo(true);
 
-    const response = await submitMessage(message);
+    try {
+      // Send to chatbot API and get updated messages
+      const updatedMessages = await chatClient.sendChatMessage(message);
+      setChatMessages(updatedMessages);
 
-    await currentModel?.speak("/audio/example.wav");
-    setChatMessages((prev) => [...prev, response]);
-    setIsFindingInfo(false);
+      // Play audio response
+      // await currentModel?.speak("/audio/example.wav");
+      console.log("Audio played");
+    } catch (error) {
+      console.error("Error processing message:", error);
+      // Add error message if needed
+    } finally {
+      setIsFindingInfo(false);
+      // Reset Expression
+      await currentModel?.internalModel.motionManager.expressionManager?.resetExpression();
+    }
+  };
+
+  const handleResetChat = async () => {
     // Reset Expression
     await currentModel?.internalModel.motionManager.expressionManager?.resetExpression();
+
+    // Reset chat history and get welcome message
+    const resetMessages = chatClient.resetChat("Do you have any questions?");
+    setChatMessages(resetMessages);
   };
 
   return (
     <>
       <Script
-        src="sdk/live2dcubismcore.min.js" // Load Live2D Cubism SDK, Needed For WaifuLibs
-        strategy="afterInteractive" // load before anything else
+        src="sdk/live2dcubismcore.min.js"
+        strategy="afterInteractive"
         onLoad={onLive2dScriptLoad}
       />
       <main>
@@ -144,7 +147,6 @@ export default function MyAssistant() {
             <div>
               <WaifuLoader
                 className={`h-full w-full bg-transparent ${modelLoaded ? "" : ""}`}
-                // resizeTo={containerRef.current || undefined}
                 modelOptions={modelsOption}
               />
               <div
@@ -191,18 +193,7 @@ export default function MyAssistant() {
                 />
                 <Button
                   className="bg-foreground text-background transition-all hover:scale-110"
-                  onClick={async () => {
-                    // Reset Expression
-                    await currentModel?.internalModel.motionManager.expressionManager?.resetExpression();
-                    // Reset chat
-                    setChatMessages([
-                      {
-                        id: "1",
-                        type: "agent",
-                        content: "Do you have any questions?",
-                      },
-                    ]);
-                  }}
+                  onClick={handleResetChat}
                 >
                   Reset Chat
                 </Button>
