@@ -10,7 +10,7 @@ import { ChatEngine } from "@/lib/assistant/chat/ChatEngine";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import { InternalModel, Live2DModel } from "pixi-live2d-display-lipsyncpatch";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const WaifuLoader = dynamic(() => import("@/components/live2d/WaifuLoader"), {
   ssr: false,
@@ -41,6 +41,7 @@ export default function MyAssistant() {
 
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [isFindingInfo, setIsFindingInfo] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   // Initialize ChatEngine
   const chatClient = useMemo(() => new ChatEngine(), []);
@@ -105,12 +106,16 @@ export default function MyAssistant() {
       const updatedMessages = await chatClient.sendChatMessage(message);
       setChatMessages(updatedMessages);
 
+      console.log({
+        state: "handleSubmitVoiceGeneration",
+        updatedMessages: updatedMessages,
+      });
       // Play audio response
-      // await currentModel?.speak("/audio/example.wav");
-      console.log("Audio played");
+      handleSubmitVoiceGeneration(
+        updatedMessages[updatedMessages.length - 1].content,
+      );
     } catch (error) {
-      console.error("Error processing message:", error);
-      // Add error message if needed
+      console.error({ error: error, message: "Error sending message" });
     } finally {
       setIsFindingInfo(false);
       // Reset Expression
@@ -126,6 +131,108 @@ export default function MyAssistant() {
     const resetMessages = chatClient.resetChat("Do you have any questions?");
     setChatMessages(resetMessages);
   };
+
+  // -- TTS Engine --
+  // Create a reference to the worker object.
+  const worker = useRef<Worker | null>(null);
+  const selectedSpeaker = "af_heart";
+  // const [voices, setVoices] = useState([]); // List of available voices
+  const [status, setStatus] = useState<
+    "device" | "ready" | "error" | "loading" | "audio"
+  >("loading");
+  const [results, setResults] = useState<
+    { text: string; src: string; blob: Blob }[]
+  >([]);
+
+  useEffect(() => {
+    // Create the worker if it does not yet exist.
+    worker.current ??= new Worker(
+      new URL("@/lib/assistant/audio/tts/tts.worker", import.meta.url),
+      {
+        type: "module",
+      },
+    );
+
+    // Create a callback function for messages from the worker thread.
+    const onMessageReceived = (e: MessageEvent) => {
+      switch (e.data.status) {
+        case "device":
+          console.info(`Loading model (device="${e.data.device}")`);
+          break;
+        case "ready":
+          setStatus("ready");
+          // setVoices(e.data.voices);
+          console.info(`Model loaded, Available voices: ${e.data.voices}`);
+          break;
+        case "error":
+          console.error(e.data.data);
+          break;
+        case "audio":
+          const { audio, text }: { audio: Blob; text: string } = e.data;
+          console.info({
+            state: "audio.received",
+            audio: audio,
+            text: text,
+          });
+          const audioUrl = URL.createObjectURL(audio);
+          setResults((prev) => [
+            { text: text, src: audioUrl, blob: audio },
+            ...prev,
+          ]);
+          setStatus("ready");
+          setIsSpeaking(false);
+          break;
+        default:
+          console.warn("Unknown message received:", e.data);
+      }
+    };
+
+    const onErrorReceived = (e: ErrorEvent) => {
+      console.error("Worker error:", e);
+    };
+
+    // Attach the callback function as an event listener.
+    worker.current.addEventListener("message", onMessageReceived);
+    worker.current.addEventListener("error", onErrorReceived);
+
+    // Define a cleanup function for when the component is unmounted.
+    return () => {
+      worker.current?.removeEventListener("message", onMessageReceived);
+      worker.current?.removeEventListener("error", onErrorReceived);
+    };
+  }, []);
+
+  const handleSubmitVoiceGeneration = (text: string) => {
+    if (!worker.current) {
+      console.error({ error: "Worker not initialized" });
+      return;
+    }
+    worker.current.postMessage({
+      type: "generate",
+      text: text.trim(),
+      voice: selectedSpeaker,
+    });
+  };
+
+  // speak on result
+  useEffect(() => {
+    async function speakText() {
+      const isWillSpeak = currentModel && !isSpeaking && results.length > 0;
+      console.log({
+        state: "is.model.will.speak",
+        currentModel: currentModel,
+        isSpeaking: isSpeaking,
+        results: results,
+        isWillSpeak: isWillSpeak,
+      });
+      if (isWillSpeak) {
+        setIsSpeaking(true);
+        await currentModel.speak(results[0].src);
+      }
+    }
+
+    speakText();
+  }, [results, currentModel, isSpeaking]);
 
   return (
     <>
@@ -201,16 +308,23 @@ export default function MyAssistant() {
             </section>
           </div>
           <div className="absolute bottom-0 right-0 p-4 text-xs text-white">
-            <Button
-              onClick={async () => {
-                if (currentModel) {
-                  console.info("Speaking...");
-                  currentModel.speak("/audio/example.wav");
-                }
-              }}
-            >
-              Speech Testing
-            </Button>
+            <div>
+              {/* Status */}
+              <div className="mb-4">
+                <span>Audio Engine Status: </span>
+                <span className="font-bold">{status}</span>
+              </div>
+              {/* Speech Testing */}
+              <Button
+                onClick={async () => {
+                  handleSubmitVoiceGeneration(
+                    "Hello, this is a test message. my name is EVA and I am here to help you.",
+                  );
+                }}
+              >
+                Speech Testing
+              </Button>
+            </div>
           </div>
         </div>
       </main>
