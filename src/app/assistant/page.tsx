@@ -47,7 +47,10 @@ function useTTSWorker(setIsSpeaking: (isSpeaking: boolean) => void) {
   const [results, setResults] = useState<
     { text: string; src: string; blob: Blob }[]
   >([]);
-
+  const [progress, setProgress] = useState<number>(0);
+  function setProgressCallback(progress: number) {
+    setProgress(Math.max(0, Math.min(progress, 100)));
+  }
   useEffect(() => {
     if (!worker.current) {
       worker.current = new Worker(
@@ -70,14 +73,19 @@ function useTTSWorker(setIsSpeaking: (isSpeaking: boolean) => void) {
           console.error(e.data.data);
           setStatus("error");
           break;
-        case "audio": {
+        case "audio":
           const { audio, text } = e.data as { audio: Blob; text: string };
           const audioUrl = URL.createObjectURL(audio);
           setResults((prev) => [{ text, src: audioUrl, blob: audio }, ...prev]);
           setStatus("ready");
           setIsSpeaking(false);
           break;
-        }
+        case "loading":
+          const { info } = e.data;
+          if (info.status != "done") {
+            setProgressCallback(info.progress);
+          }
+          break;
         default:
           console.warn("Unknown message received:", e.data);
       }
@@ -108,7 +116,7 @@ function useTTSWorker(setIsSpeaking: (isSpeaking: boolean) => void) {
     });
   }, []);
 
-  return { status, results, generateVoice };
+  return { status, results, progress, generateVoice };
 }
 
 /* -------------------------------------------------------------------------
@@ -170,7 +178,8 @@ export default function MyAssistant() {
   }, [isDesktop, defaultModelOptions]);
 
   // TTS Worker hook for voice generation
-  const { status, results, generateVoice } = useTTSWorker(setIsSpeaking);
+  const { status, results, progress, generateVoice } =
+    useTTSWorker(setIsSpeaking);
   const selectedSpeaker = "af_heart";
 
   /* -----------------------------------------------------------------------
@@ -305,7 +314,9 @@ export default function MyAssistant() {
           <div className="absolute bottom-0 right-0 p-4 text-xs text-white">
             <div className="mb-4">
               <span>Audio Engine Status: </span>
-              <span className="font-bold">{status}</span>
+              <span className="font-bold">
+                {status === "ready" || progress > 0 ? "Ready" : `${progress}%`}
+              </span>
             </div>
             <Button
               onClick={() =>

@@ -18,16 +18,17 @@ const model_id = "onnx-community/Kokoro-82M-v1.0-ONNX";
 const tts = await (async () => {
   try {
     const model = StyleTextToSpeech2Model.from_pretrained(model_id, {
-      progress_callback: (progress) => {
-        console.log({ status: "loading", progress });
+      progress_callback: (info) => {
+        self.postMessage({ status: "loading", info: info });
+        console.log({ status: "loading.tts-model", info });
       },
       dtype: device === "wasm" ? "q8" : "fp32",
       device: device,
       local_files_only: false,
     });
     const tokenizer = AutoTokenizer.from_pretrained(model_id, {
-      progress_callback: (progress) => {
-        console.log({ status: "loading", progress });
+      progress_callback: (info) => {
+        console.log({ status: "loading.tokenizer", info });
       },
     });
 
