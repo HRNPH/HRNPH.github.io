@@ -14,16 +14,6 @@ self.postMessage({ status: "device", device });
 
 // Load the model
 const model_id = "onnx-community/Kokoro-82M-v1.0-ONNX";
-// const tts = await KokoroTTS.from_pretrained(model_id, {
-//     dtype: device === "wasm" ? "q8" : "fp32",
-//     device,
-//     progress_callback: (progress) => {
-//         console.log({ status: "loading", progress });
-//     }
-// }).catch((e) => {
-//     self.postMessage({ status: "error", error: e.message });
-//     throw e;
-// });
 
 const tts = await (async () => {
   try {
@@ -55,12 +45,15 @@ self.postMessage({ status: "ready", voices: tts.voices, device });
 // Listen for messages from the main thread
 self.addEventListener("message", async (e) => {
   const { type } = e.data;
-  console.debug(`Received Type '${type}'`, e.data);
+  console.debug({
+    state: "tts",
+    type: type,
+    data: e.data,
+  });
   switch (type) {
     case "generate":
       // Generate speech
       const { text, voice } = e.data;
-      console.debug("Given", { text, voice });
 
       const language = tts._validate_voice(voice);
       const phonemes = await phonemize(text, language);
@@ -73,7 +66,7 @@ self.addEventListener("message", async (e) => {
       // Load voice style
       const STYLE_DIM = 256;
       const SAMPLE_RATE = 24000;
-      const SPEED = 1.0;
+      const SPEED = 1.1;
 
       const data = await getVoiceData(voice);
       const offset = num_tokens * STYLE_DIM;
