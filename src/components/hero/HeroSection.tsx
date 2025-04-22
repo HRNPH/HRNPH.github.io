@@ -49,21 +49,33 @@ const HeroSection = ({ className }: { className?: string }) => {
             </p>
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:space-x-4 lg:justify-start">
-            <a href="/assistant" className="w-full sm:w-auto">
-              <Button className="w-full bg-purple-500 px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-purple-600 sm:w-auto">
-                Talk To My AI Secretary
-              </Button>
-            </a>
-            {/* Outline A tag for SEO */}
-            <a href="#contact" className="w-full sm:w-auto">
-              <Button
-                variant="outline"
-                className="hover:bg-blue-500/1 w-full border-blue-400 bg-transparent px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-blue-500/10 hover:text-blue-400 sm:w-auto"
-              >
-                Contact Me?
-              </Button>
-            </a>
+          <div className="w-full">
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:space-x-1 lg:justify-start">
+              <a href="/assistant" className="w-full sm:w-auto">
+                <Button className="w-full bg-purple-500 px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-purple-600 sm:w-auto">
+                  My AI Secretary
+                </Button>
+              </a>
+
+              <a href="https://blog.hrnph.dev" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  className="hover:bg-blue-500/1 w-full border-violet-400 bg-transparent px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-violet-500/10 hover:text-violet-400 sm:w-auto"
+                >
+                  My Blog
+                </Button>
+              </a>
+
+              {/* Outline A tag for SEO */}
+              <a href="#contact" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  className="hover:bg-blue-500/1 w-full border-blue-400 bg-transparent px-6 py-3 text-lg text-white transition-colors duration-300 hover:bg-blue-500/10 hover:text-blue-400 sm:w-auto"
+                >
+                  Contact Me?
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
 
