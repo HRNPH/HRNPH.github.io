@@ -136,6 +136,15 @@ export default function Home() {
               "A homelab set up as a Proxmox cluster, provisioned using Terraform and Packer for creating cloud-init template. It is used for learning various technologies and hosting personal projects, including this website. The setup includes a local Kubernetes cluster for experimenting with GitOps workflows, ArgoCD, and remote development servers powered by my two 4070 TI GPUs. The servers run privately on a home network, accessible only via VPN through Tailscale. Public access is managed using Cloudflare Tunnel, while internal services for personal and business use are secured with Cloudflare Access.",
             link: "https://github.com/HRNPH/HomePacker",
           },
+          {
+            "title": "SolveServe Group",
+            tags: ["Bussiness", "Software Development"],
+            image: "/images/projects/solveserve/01.png",
+            logo: "/images/projects/solveserve/logo.png",
+            full_description: "SolveServe Group is a legally registered software company I co-founded, focusing on software development and tech business expansion. Within just a year, we secured over a million THB in contracts, demonstrating our ability to deliver high-quality software solutions. We utilize an Agile-Waterfall hybrid SDLC to ensure efficient project management and client satisfaction. Our team is dedicated to providing innovative software solutions that meet the needs of our clients across various industries.",
+            link: "https://www.solveserve.co.th/",
+            description: "Founded a IT Solution company, focusing on software development and tech business expansion.",
+          }
           // {
           //   title: "PreceptorAI",
           //   description: "A medical chatbot assisting over 12,000 users.",
